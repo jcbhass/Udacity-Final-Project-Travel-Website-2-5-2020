@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('src/client'));
 
 // Setup Server
 const port = 5000;
@@ -28,6 +28,10 @@ function listening() {
     console.log('server running');
     console.log(`running on localhost: ${port}`);
 };
+
+app.get('/', function (req, res) {
+    res.sendFile('/client/views/index.html', { root: __dirname + '/..' })
+})
 
 // POST route
 app.post('/', function (req, res) {

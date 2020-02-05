@@ -2,10 +2,10 @@
   "name": "weather-journal-app-12-18-2019",
   "version": "1.0.0",
   "description": "Weather app that searches by zip code and takes in emotions of user",
-  "main": "server2.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "start": "node server2",
-    "dev": "nodemon server2"
+    "start": "node src/server/server",
+    "dev": "nodemon src/server/server"
   },
   "keywords": [
     "weather",
