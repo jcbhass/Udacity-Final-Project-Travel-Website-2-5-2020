@@ -78,3 +78,4 @@ const postData = async ( url = '', data = {})=>{
 
 }
 
+export { performAction, getDate }

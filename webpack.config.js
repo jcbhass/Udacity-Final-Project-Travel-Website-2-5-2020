@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const polyfill = require("@babel/polyfill");
 
 module.exports = {
-    entry: './src/client/index.js',
+    entry: ["@babel/polyfill", "./src/client/index.js"],
     module: {
         rules: [
             {
