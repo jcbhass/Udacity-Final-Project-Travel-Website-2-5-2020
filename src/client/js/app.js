@@ -1,4 +1,5 @@
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+import axios from 'axios';
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&appid=ded2480664e28367b432793866b6b8c5';
 
 // Create a new date instance dynamically with JS
@@ -33,7 +34,7 @@ function performAction(event){
 
 const updateUI = async () => {
     // Gets data from the server
-    const request = await fetch('/all');
+    const request = await axios('/all');
 
     // Tries Shows the data
     try{
@@ -48,7 +49,7 @@ const updateUI = async () => {
   }
 
 const getZipCode = async (baseURL, zipCode, apiKey)=>{
-  const res = await fetch(baseURL+zipCode+apiKey+'&units=imperial')
+  const res = await axios(baseURL+zipCode+apiKey+'&units=imperial')
 
   try {
     const data = await res.json();
@@ -64,7 +65,7 @@ const getZipCode = async (baseURL, zipCode, apiKey)=>{
 // Async POST
 const postData = async ( url = '', data = {})=>{
   try{
-  const response = await fetch(url, {
+  const response = await axios(url, {
     method: 'POST', 
     credentials: 'same-origin', 
     headers: {

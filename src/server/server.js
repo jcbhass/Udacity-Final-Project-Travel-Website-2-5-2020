@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
+
+const axios = require('axios');
+
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
