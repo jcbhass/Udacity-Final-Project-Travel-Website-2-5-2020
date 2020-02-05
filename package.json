@@ -1,0 +1,26 @@
+{
+  "name": "weather-journal-app-12-18-2019",
+  "version": "1.0.0",
+  "description": "Weather app that searches by zip code and takes in emotions of user",
+  "main": "server2.js",
+  "scripts": {
+    "start": "node server2",
+    "dev": "nodemon server2"
+  },
+  "keywords": [
+    "weather",
+    "zip",
+    "code",
+    "emotions"
+  ],
+  "author": "Jennifer Bynum-Hasselgren",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
