@@ -6,7 +6,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: '/\.js$/',	//don’t need quotation marks. 
+                test: /\.js$/,	
                 exclude: /node_modules/,
                 loader: "babel-loader"
             }
