@@ -5,7 +5,8 @@
   "main": "src/server/server.js",
   "scripts": {
     "start": "node src/server/server",
-    "build": "webpack"
+    "build-prod": "webpack --config webpack.prod.js", 
+    "build-dev": "webpack --config webpack.dev.js"
   },
   "keywords": [
     "weather",
