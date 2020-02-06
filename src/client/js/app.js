@@ -2,6 +2,8 @@ import axios from 'axios';
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
 const apiKey = '&appid=ded2480664e28367b432793866b6b8c5';
 
+const serverUrl = 'http://localhost:5000';
+
 // Create a new date instance dynamically with JS
 function getDate() {
   const d = new Date();
@@ -27,18 +29,18 @@ function performAction(event){
           data.feelings = feelings;
           
           // Sends data to the server
-          postData('/', data);
+          return postData(`${serverUrl}/`, data);
       })
       .then(updateUI);
 }
 
 const updateUI = async () => {
-    // Gets data from the server
-    const request = await axios('/all');
-
+    
     // Tries Shows the data
     try{
-      const projectData = await request.json();
+      // Gets data from the server
+       const response = await axios.get(`${serverUrl}/all`);
+      const projectData = response.data;
       document.getElementById('date').innerHTML = projectData.date;
       document.getElementById('temp').innerHTML = projectData.temperature+"&deg"+"F";
       document.getElementById('content').innerHTML = projectData.feelings;
@@ -49,12 +51,10 @@ const updateUI = async () => {
   }
 
 const getZipCode = async (baseURL, zipCode, apiKey)=>{
-  const res = await axios(baseURL+zipCode+apiKey+'&units=imperial')
 
   try {
-    const data = await res.json();
-
-    return data;
+    const res = await axios.get(baseURL+zipCode+apiKey+'&units=imperial');
+    return res.data;
   }  catch(error) {
     console.log("error", error);
     // appropriately handle the error
@@ -63,16 +63,10 @@ const getZipCode = async (baseURL, zipCode, apiKey)=>{
 
 
 // Async POST
-const postData = async ( url = '', data = {})=>{
+const postData = async ( url, data)=>{
   try{
-  const response = await axios(url, {
-    method: 'POST', 
-    credentials: 'same-origin', 
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header        
-  });
+  const response = await axios.post(url, data);
+  return  response.data;
 }catch(error){
   console.log("error", error);
 }

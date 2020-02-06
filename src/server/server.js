@@ -38,6 +38,7 @@ app.get('/', function (req, res) {
 
 // POST route
 app.post('/', function (req, res) {
+    console.log('======', res.body);
     projectData.date = req.body.date;
     projectData.temperature = req.body.main.temp;
     projectData.feelings = req.body.feelings;
