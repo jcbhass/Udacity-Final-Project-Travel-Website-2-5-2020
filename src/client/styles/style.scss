@@ -1,0 +1,9 @@
+$themeColor-Dark:rgba(201, 201, 191, 0.733);
+body {
+    background-color: $themeColor-Dark;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
