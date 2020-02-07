@@ -1,5 +1,5 @@
 import { performAction, getDate } from './js/app'
 
-import './styles/style.scss'
+import './styles/main.scss'
 
 console.log('Hello---');
