@@ -41,6 +41,7 @@ app.post('/', function (req, res) {
     console.log('======', res.body);
     projectData.date = req.body.date;
     projectData.temperature = req.body.main.temp;
+    projectData.name = req.body.name;
     projectData.feelings = req.body.feelings;
     console.log('POST request received');
     res.end();

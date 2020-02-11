@@ -28,7 +28,7 @@ function performAction(event){
           data.date = getDate();
           data.feelings = feelings;
           
-          // Sends data to the server
+          // Sends data to the server 
           return postData(`${serverUrl}/`, data);
       })
       .then(updateUI);
@@ -43,6 +43,7 @@ const updateUI = async () => {
       const projectData = response.data;
       document.getElementById('date').innerHTML = projectData.date;
       document.getElementById('temp').innerHTML = projectData.temperature+"&deg"+"F";
+      document.getElementById('city').innerHTML = projectData.name;
       document.getElementById('content').innerHTML = projectData.feelings;
   
     }catch(error){
