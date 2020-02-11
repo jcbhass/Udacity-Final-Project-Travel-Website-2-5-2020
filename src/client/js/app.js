@@ -1,6 +1,6 @@
 import axios from 'axios';
-const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = '&appid=ded2480664e28367b432793866b6b8c5';
+const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+const apiKey = '&appid=&username=jcbhass';
 
 const serverUrl = 'http://localhost:5000';
 
@@ -18,7 +18,7 @@ document.getElementById('generate').addEventListener('click', performAction);
 function performAction(event){
     // Gets zipcode and feelings from user input
     const zipCode =  document.getElementById('zip').value;
-    const feelings =  document.getElementById('feelings').value;
+    const travelDate =  document.getElementById('travelToDate').value;
 
     // Gets zipcode from Open Weather Map
     getZipCode(baseURL, zipCode, apiKey) 
@@ -26,7 +26,7 @@ function performAction(event){
           // Add data to POST request
           // data.date = (new Date()).toDateString();
           data.date = getDate();
-          data.feelings = feelings;
+          data.travelDate = travelDate;
           
           // Sends data to the server 
           return postData(`${serverUrl}/`, data);
@@ -41,10 +41,14 @@ const updateUI = async () => {
       // Gets data from the server
        const response = await axios.get(`${serverUrl}/all`);
       const projectData = response.data;
+      console.log(projectData);
+      console.log(projectData.travelDate)
       document.getElementById('date').innerHTML = projectData.date;
-      document.getElementById('temp').innerHTML = projectData.temperature+"&deg"+"F";
-      document.getElementById('city').innerHTML = projectData.name;
-      document.getElementById('content').innerHTML = projectData.feelings;
+      document.getElementById('lat').innerHTML = projectData.lat;
+      document.getElementById('long').innerHTML = projectData.long;
+      document.getElementById('city').innerHTML = projectData.city;
+      document.getElementById('country').innerHTML = projectData.countryCode;
+      document.getElementById('travel_date').innerHTML = projectData.travelDate;
   
     }catch(error){
       console.log("error", error);

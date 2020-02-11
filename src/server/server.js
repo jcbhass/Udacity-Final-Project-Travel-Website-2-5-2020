@@ -40,9 +40,11 @@ app.get('/', function (req, res) {
 app.post('/', function (req, res) {
     console.log('======', res.body);
     projectData.date = req.body.date;
-    projectData.temperature = req.body.main.temp;
-    projectData.name = req.body.name;
-    projectData.feelings = req.body.feelings;
+    projectData.lat = req.body.postalCodes[0].lat;
+    projectData.long = req.body.postalCodes[0].lng;
+    projectData.city = req.body.postalCodes[0].placeName;
+    projectData.countryCode = req.body.postalCodes[0].countryCode;
+    projectData.travelDate = req.body.travelDate;
     console.log('POST request received');
     res.end();
 });
