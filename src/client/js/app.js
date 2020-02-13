@@ -1,6 +1,9 @@
 import axios from 'axios';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
+const darkApiURL = 'https://api.darksky.net/forecast/'
+const darkApiKey = 'd642919db3884e09597df98337d26058';
+
 
 const serverUrl = 'http://localhost:5000';
 
@@ -39,7 +42,7 @@ const updateUI = async () => {
     // Tries Shows the data
     try{
       // Gets data from the server
-       const response = await axios.get(`${serverUrl}/all`);
+      const response = await axios.get(`${serverUrl}/all`);
       const projectData = response.data;
       console.log(projectData);
       console.log(projectData.travelDate)
