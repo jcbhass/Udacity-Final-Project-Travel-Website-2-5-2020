@@ -1,9 +1,9 @@
 import axios from 'axios';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
-const darkApiURL = 'https://api.darksky.net/forecast/'
-const darkApiKey = 'd642919db3884e09597df98337d26058';
 
+const pixelBayApiURL = '';
+const pixelBayApiKey = '';
 
 const serverUrl = 'http://localhost:5000';
 
@@ -15,13 +15,13 @@ function getDate() {
   return newDate;
 }
 
-// Adds click event for #generate button
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(event){
     // Gets zipcode and feelings from user input
     const zipCode =  document.getElementById('zip').value;
     const travelDate =  document.getElementById('travelToDate').value;
+    const startDate = document.getElementById('start').value;
 
     // Gets zipcode from Open Weather Map
     getZipCode(baseURL, zipCode, apiKey) 
@@ -30,6 +30,9 @@ function performAction(event){
           // data.date = (new Date()).toDateString();
           data.date = getDate();
           data.travelDate = travelDate;
+          data.start = startDate;
+
+          console.log('REQ DATA==', data)
           
           // Sends data to the server 
           return postData(`${serverUrl}/`, data);
@@ -44,14 +47,22 @@ const updateUI = async () => {
       // Gets data from the server
       const response = await axios.get(`${serverUrl}/all`);
       const projectData = response.data;
-      console.log(projectData);
-      console.log(projectData.travelDate)
-      document.getElementById('date').innerHTML = projectData.date;
-      document.getElementById('lat').innerHTML = projectData.lat;
-      document.getElementById('long').innerHTML = projectData.long;
-      document.getElementById('city').innerHTML = projectData.city;
-      document.getElementById('country').innerHTML = projectData.countryCode;
-      document.getElementById('travel_date').innerHTML = projectData.travelDate;
+      if(projectData) {
+
+        // const forecastResponse = await axios.get(`${serverUrl}/forecast`);
+        // const forecastData = forecastResponse.data;
+
+        console.log('===Project Data ===', projectData);
+        document.getElementById('date').innerHTML = projectData.date;
+        document.getElementById('lat').innerHTML = projectData.lat;
+        document.getElementById('long').innerHTML = projectData.long;
+        document.getElementById('city').innerHTML = projectData.city;
+        document.getElementById('country').innerHTML = projectData.countryCode;
+        document.getElementById('travel_date').innerHTML = projectData.travelDate;
+        document.getElementById('start').innerHTML=projectData.startDate;
+
+        document.getElementById('forecast').innerHTML = projectData.forecast.minutely.summary;
+      }
   
     }catch(error){
       console.log("error", error);
@@ -61,13 +72,14 @@ const updateUI = async () => {
 const getZipCode = async (baseURL, zipCode, apiKey)=>{
 
   try {
-    const res = await axios.get(baseURL+zipCode+apiKey+'&units=imperial');
+    const res = await axios.get(baseURL+zipCode+apiKey);
     return res.data;
   }  catch(error) {
     console.log("error", error);
     // appropriately handle the error
   }
 }
+
 
 
 // Async POST
@@ -82,3 +94,10 @@ const postData = async ( url, data)=>{
 }
 
 export { performAction, getDate }
+
+//Calculate days till travel date
+// let startTravel =  document.getElementById('start').value
+// let millisecondsBetweenStartTravelAnd1970 = Date.parse(startTravel);
+// const millisecondsBetweenNowAnd1970 = Date.now();
+// let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
+// let daysTillTravel = millisecondsTillTravel*1000*60*60*24;

@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -16,6 +16,9 @@ app.use(bodyParser.json());
 const cors = require('cors');
 
 const axios = require('axios');
+
+const darkApiURL = 'https://api.darksky.net/forecast'
+const darkApiKey = 'd642919db3884e09597df98337d26058';
 
 app.use(cors());
 // Initialize the main project folder
@@ -45,13 +48,22 @@ app.post('/', function (req, res) {
     projectData.city = req.body.postalCodes[0].placeName;
     projectData.countryCode = req.body.postalCodes[0].countryCode;
     projectData.travelDate = req.body.travelDate;
+    projectData.startDate = req.body.startDate;
+      
     console.log('POST request received');
-    res.end();
+    return res.status(200).json('Success!');
 });
 
 // GET route returns projectData
-app.get('/all', function (req, res) {
+app.get('/all', async function (req, res) {
+    const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
+    projectData.forecast = response.data;
     res.send(projectData);
     console.log('GET request received')
 });
+
+// app.get('/forecast', async function(req, res) {
+//     const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
+//     return res.status(200).json(response.data);
+// })
 
