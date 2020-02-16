@@ -20,6 +20,13 @@ const axios = require('axios');
 const darkApiURL = 'https://api.darksky.net/forecast'
 const darkApiKey = 'd642919db3884e09597df98337d26058';
 
+const pixaBayApiURL = 'https://pixabay.com/api/?key"';
+const pixaBayApiKey = ''; 
+
+const restCountriesApiURL = 'https://restcountries.eu/rest/v2/name/{name}';
+const restCountriesApiKey = '';
+
+
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
@@ -47,8 +54,9 @@ app.post('/', function (req, res) {
     projectData.long = req.body.postalCodes[0].lng;
     projectData.city = req.body.postalCodes[0].placeName;
     projectData.countryCode = req.body.postalCodes[0].countryCode;
-    projectData.travelDate = req.body.travelDate;
-    projectData.startDate = req.body.startDate;
+    projectData.startTrip = req.body.start;
+    projectData.endTrip = req.body.end;
+
       
     console.log('POST request received');
     return res.status(200).json('Success!');
@@ -57,6 +65,7 @@ app.post('/', function (req, res) {
 // GET route returns projectData
 app.get('/all', async function (req, res) {
     const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
+    // const picResponse = await axios.get(`${}`)
     projectData.forecast = response.data;
     res.send(projectData);
     console.log('GET request received')
