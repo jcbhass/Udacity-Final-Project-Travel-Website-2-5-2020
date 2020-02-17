@@ -6,13 +6,11 @@
 <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
  <body>
-<div id = "app">
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
+<h1 id = "app">
+  <h1 class ="holder headline">Travel Planner</h1>
   <div class ="holder zip">
-    <label for="zip">Enter Zipcode here</label>
-    <input type="text" id="zip" placeholder="enter zip code here">
+    <label for="zip">Enter city and country you are traveling to: </label>
+    <input type="text" id="zip" placeholder="city, country">
   </div>
   <div class ="holder feel">
     <label for="travelingStart">When is your travel START date?</label>
@@ -24,7 +22,6 @@
     <!-- <button id="generate" type = "submit"> Generate </button> -->
     <div></div>
     <!-- <input type = 'text' id = 'startDate' placeholder = "mm/dd/yyyy"> -->
-    <input type="date" id="start" name="trip-start"> 
     <input id="generate" type="submit" name="" value="submit" onsubmit="return performAction(event)"></input>
   </div>
   <div class ="holder entry">
@@ -32,18 +29,22 @@
     <div id = "entryHolder">
     <div></div>
     <!--Have the section below as a const markup section Udemy course JS2020 Building the Search View Part 1 -->
-    <div id = "date"></div> 
+    <h3>Today's date: </h3><div id = "date"></div> 
     <div id = "lat"></div>
     <div id = "long"></div>
     <div id = "city"></div>
+    <div id = "state"></div>
     <div id = "country"></div>
     <div id = "travel_date"></div>
     <div id = "daysTill"></div>
+    <h3>Departing: </h3>
     <div id = "start"></div>
+    <h3>Returning: </h3>
     <div id = "end"></div>
     <div id = "duration"></div>
     <div id = "forecast"></div>
     <div id = "country_image"></div>
+    <div id = "city_picture"></div>
 
   </div>
   </div>
