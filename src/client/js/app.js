@@ -39,6 +39,17 @@ function performAction(event){
   const startDate = document.getElementById('trip-start').value;
   const endDate = document.getElementById('trip-end').value;
 
+  //Calculate days till travel start date
+  let millisecondsBetweenStartTravelAnd1970 = Date.parse(startDate);
+  let millisecondsBetweenNowAnd1970 = Date.parse(getDate());
+  let millisecondsBetweenEndTravelAnd1970 = Date.parse(endDate);
+  let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
+  let daysTillTravel = (millisecondsTillTravel/(1000*60*60*24));
+
+  //Calculate days from travel start date to end date. 
+  let millisecondsTravelDuration = millisecondsBetweenEndTravelAnd1970-millisecondsBetweenStartTravelAnd1970;
+  let daysTravelDuration = (millisecondsTravelDuration/(1000*60*60*24));
+
 
     // Gets zipcode from Open Weather Map
     getZipCode(baseURL, zipCode, apiKey) 
@@ -48,11 +59,13 @@ function performAction(event){
         data.date = getDate();
         data.start = startDate;
         data.end = endDate;
+        data.until = daysTillTravel;
+        data.duration = daysTravelDuration;
 
-       
 
+    
 
-
+        
         console.log('REQ DATA==', data);
         
         // Sends data to the server 
@@ -82,14 +95,13 @@ const updateUI = async () => {
       document.getElementById('city').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state;
       document.getElementById('country').innerHTML = projectData.countryCode;
-      // document.getElementById('daysTill').innerHTML = projectData.
+      document.getElementById('daysTill').innerHTML = projectData.daysTill;
       document.getElementById('start').innerHTML = projectData.startTrip;
       document.getElementById('end').innerHTML = projectData.endTrip;
-      // document.getElementById('duration').innerHTML = projectData.duration;
+      document.getElementById('duration').innerHTML = projectData.durationOfTrip;
 
       document.getElementById('forecast').innerHTML = projectData.forecast.hourly.summary;
-
-
+ 
       // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
       // function insert() { 
       //   let img = document.createElement('img');
@@ -100,15 +112,7 @@ const updateUI = async () => {
       // }
       // document.getElementyById('city_picture').appendChild(img) = `${projectData.pictures.hits.largeImageURL}`;
 
-      // //Calculate days till start travel date
-    
-      // //Calculate days from travel start date to end date. 
-
-      // let millisecondsBetweenStartTravelAnd1970 = Date.parse(projectData.startTrip);
-      // const millisecondsBetweenNowAnd1970 = projectData.date;
-      // let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
-      // let daysTillTravel = millisecondsTillTravel*1000*60*60*24;
-      // console.log(daysTillTravel);
+      
     }
   
   } catch(error) {

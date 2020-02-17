@@ -58,6 +58,8 @@ app.post('/', function (req, res) {
     projectData.countryCode = req.body.postalCodes[0].countryCode;
     projectData.startTrip = req.body.start;
     projectData.endTrip = req.body.end;
+    projectData.daysTill = req.body.until;
+    projectData.durationOfTrip = req.body.duration;
     
     console.log('POST request received');
     return res.status(200).json('Success!');
