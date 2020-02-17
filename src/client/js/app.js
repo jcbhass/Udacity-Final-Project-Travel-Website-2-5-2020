@@ -46,6 +46,9 @@ function performAction(event){
   let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
   let daysTillTravel = (millisecondsTillTravel/(1000*60*60*24));
 
+  //Gets first date of weather forecast
+
+
   //Calculate days from travel start date to end date. 
   let millisecondsTravelDuration = millisecondsBetweenEndTravelAnd1970-millisecondsBetweenStartTravelAnd1970;
   let daysTravelDuration = (millisecondsTravelDuration/(1000*60*60*24));
@@ -58,6 +61,7 @@ function performAction(event){
         // data.date = (new Date()).toDateString();
         data.date = getDate();
         data.start = startDate;
+        data.startParse = millisecondsBetweenStartTravelAnd1970;
         data.end = endDate;
         data.until = daysTillTravel;
         data.duration = daysTravelDuration;
@@ -95,12 +99,12 @@ const updateUI = async () => {
       document.getElementById('city').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state;
       document.getElementById('country').innerHTML = projectData.countryCode;
-      document.getElementById('daysTill').innerHTML = projectData.daysTill;
+      document.getElementById('daysTill').innerHTML = projectData.daysTill; 
       document.getElementById('start').innerHTML = projectData.startTrip;
       document.getElementById('end').innerHTML = projectData.endTrip;
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
 
-      document.getElementById('forecast').innerHTML = projectData.forecast.hourly.summary;
+      document.getElementById('forecast').innerHTML = projectData.forecast.daily.summary;
  
       // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
       // function insert() { 

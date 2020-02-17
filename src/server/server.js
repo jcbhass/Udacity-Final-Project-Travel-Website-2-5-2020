@@ -57,6 +57,7 @@ app.post('/', function (req, res) {
     projectData.state = req.body.postalCodes[0].adminName1;
     projectData.countryCode = req.body.postalCodes[0].countryCode;
     projectData.startTrip = req.body.start;
+    projectData.millisecondsStart = req.body.startParse;
     projectData.endTrip = req.body.end;
     projectData.daysTill = req.body.until;
     projectData.durationOfTrip = req.body.duration;
@@ -74,7 +75,7 @@ app.get('/all', async function (req, res) {
     res.send(projectData);
     console.log('GET request received')
 });
-
+//,${projectData.millisecondsStart}?exclude=minutely,hourly,flag
 // https://pixabay.com/api/?key=15272497-2e3facb85e901b9b621c84398&q=yellow+flowers&image_type=photo
 // 
 
