@@ -63,7 +63,7 @@ app.post('/', function (req, res) {
     projectData.durationOfTrip = req.body.duration;
     
     console.log('POST request received');
-    return res.status(200).json('Success!');
+    return res.status(200).json('Success!'); 
 });
 
 // GET route returns projectData
@@ -72,7 +72,7 @@ app.get('/all', async function (req, res) {
     // const picResponse = await axios.get(`${pixaBayApiURL}?key=${pixaBayApiKey}&q=${projectData.city}&image_type=photo`)
     projectData.forecast = response.data;
     // projectData.pictures = picResponse.data;
-    res.send(projectData);
+    res.send(projectData); 
     console.log('GET request received')
 });
 //,${projectData.millisecondsStart}?exclude=minutely,hourly,flag

@@ -7,7 +7,7 @@ img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
 var src = document.getElementById("city_picture");
 src.appendChild(img);
 
-
+  
 // var API_KEY = '15202003-ed24c6df5b5db575c48c9bbdd';
 // var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent('red roses');
 // $.getJSON(URL, function(data){
@@ -44,7 +44,7 @@ function performAction(event){
   let millisecondsBetweenNowAnd1970 = Date.parse(getDate());
   let millisecondsBetweenEndTravelAnd1970 = Date.parse(endDate);
   let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
-  let daysTillTravel = (millisecondsTillTravel/(1000*60*60*24));
+  let daysTillTravel = Math.round(millisecondsTillTravel/(1000*60*60*24));
 
   //Gets first date of weather forecast
 
@@ -97,15 +97,17 @@ const updateUI = async () => {
       document.getElementById('lat').innerHTML = projectData.lat;
       document.getElementById('long').innerHTML = projectData.long;
       document.getElementById('city').innerHTML = projectData.city;
-      document.getElementById('state').innerHTML = projectData.state;
+      document.getElementById('state').innerHTML = projectData.state; 
       document.getElementById('country').innerHTML = projectData.countryCode;
       document.getElementById('daysTill').innerHTML = projectData.daysTill; 
       document.getElementById('start').innerHTML = projectData.startTrip;
       document.getElementById('end').innerHTML = projectData.endTrip;
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
 
-      document.getElementById('forecast').innerHTML = projectData.forecast.daily.summary;
- 
+      document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+      // document.getElementById('future_forecast').innerHTML = projectData.forecast. 
+
+
       // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
       // function insert() { 
       //   let img = document.createElement('img');
