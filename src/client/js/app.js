@@ -2,6 +2,7 @@ import axios from 'axios';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
 
+// https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
 var img = document.createElement("img");
 img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
 var src = document.getElementById("city_picture");
@@ -103,8 +104,26 @@ const updateUI = async () => {
       document.getElementById('start').innerHTML = projectData.startTrip;
       document.getElementById('end').innerHTML = projectData.endTrip;
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
+ 
+      // document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+      // document.getElementyById('city_picture').appendChild(img) = projectData.pictures.hits[0].webformatURL;
 
-      document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+
+
+      // var img = document.createElement("img");
+      // img.src = projectData.cityPictures;
+      // var src = document.getElementById("city_picture");
+      // src.appendChild(img);
+
+
+
+      console.log('Current Forecast', projectData.forecast)
+      console.log('Predicted forecast', projectData.predictedForecast)
+      console.log('Pictures', projectData.pictures)
+      console.log('RestCountry Info', projectData.restCountries)
+  
+
+      // document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
       // document.getElementById('future_forecast').innerHTML = projectData.forecast. 
 
 
@@ -112,11 +131,10 @@ const updateUI = async () => {
       // function insert() { 
       //   let img = document.createElement('img');
       //   let src = document.getElementById('city_picture');
- 
-      //   img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
+  
+      //   img.src = `projectData.pictures.;
       //   src.appendChild(img);
       // }
-      // document.getElementyById('city_picture').appendChild(img) = `${projectData.pictures.hits.largeImageURL}`;
 
       
     }
