@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createImage, getZipCode, getName } from './helpers';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
 
@@ -8,18 +9,13 @@ const apiKey = '&appid=&username=jcbhass';
 // var src = document.getElementById("city_picture");
 // src.appendChild(img);
 
-
+console.log('MY NAME', getZipCode)
 
 
 const serverUrl = 'http://localhost:5000';
+// https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
 
-function createImage(imageSrc) {
-  const img = document.createElement("img");
-    img.src = imageSrc;
-    img.style = "width: 300px; height: 300px";
 
-    return img;
-}
 
 //Skycon
 function setIcons(icon, iconID) {
@@ -73,6 +69,7 @@ function performAction(event){
     // Gets longitude and latitude from Geonames website
     getZipCode(baseURL, zipCode, apiKey) 
       .then(function(data){
+        console.log('HEY===',data);
         // Add data to POST request
         // data.date = (new Date()).toDateString();
         data.date = getDate();
@@ -115,8 +112,6 @@ const updateUI = async () => {
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
  
       document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
-      // document.getElementById('icon1').innerHTML = projectData.forecast.currently.icon;
-
       
       // display image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
@@ -130,19 +125,6 @@ const updateUI = async () => {
       console.log('Current Forecast', projectData.forecast)
       console.log('Pictures', projectData.pictures)
   
-
-
-
-      // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
-      // function insert() { 
-      //   let img = document.createElement('img');
-      //   let src = document.getElementById('city_picture');
-  
-      //   img.src = `projectData.pictures.;
-      //   src.appendChild(img);
-      // }
-
-      
     }
   
   } catch(error) {
@@ -150,16 +132,6 @@ const updateUI = async () => {
   }
 }
 
-const getZipCode = async (baseURL, zipCode, apiKey)=>{
-
-  try {
-    const res = await axios.get(baseURL+zipCode+apiKey);
-    return res.data;
-  } catch(error) {
-    console.log("error", error);
-    // appropriately handle the error
-  }
-}
 
 
 

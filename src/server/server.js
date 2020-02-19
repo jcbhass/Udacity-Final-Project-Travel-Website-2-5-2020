@@ -63,11 +63,15 @@ app.post('/', function (req, res) {
 app.get('/all', async function (req, res) {
     try {
         const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long},${projectData.unixDate}?exclude=minutely,hourly,daily,alerts,flag`);
+        projectData.forecast = response.data;
         
         const picResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.city}&image_type=photo`);
-
-        projectData.forecast = response.data;
         projectData.pictures = picResponse.data;
+        if(picResponse.data.hits.length === 0) {
+            console.log('Alternate pics used!!!')
+            const alternatePicResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.state}&image_type=photo`);
+            projectData.pictures = alternatePicResponse.data;
+        }
 
         return res.send(projectData); 
     } catch (error) {
