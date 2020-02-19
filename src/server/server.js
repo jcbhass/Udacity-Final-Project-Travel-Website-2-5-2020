@@ -54,15 +54,17 @@ app.get('/', function (req, res) {
 
 // POST route
 app.post('/', function (req, res) {
-    console.log('======', res.body);
+    console.log('======', req.body);
     projectData.date = req.body.date;
     projectData.lat = req.body.postalCodes[0].lat;
     projectData.long = req.body.postalCodes[0].lng;
     projectData.city = req.body.postalCodes[0].placeName;
     projectData.state = req.body.postalCodes[0].adminName1;
+    projectData.adminName2 = req.body.postalCodes[0].adminName2;
     projectData.countryCode = req.body.postalCodes[0].countryCode;
     projectData.startTrip = req.body.start;
-    projectData.millisecondsStart = req.body.startParse;
+    projectData.convertedStart = req.body.startParse;
+    projectData.unixDate = req.body.unixStartDate;
     projectData.endTrip = req.body.end;
     projectData.daysTill = req.body.until;
     projectData.durationOfTrip = req.body.duration;
@@ -75,24 +77,25 @@ app.post('/', function (req, res) {
 
 //GET route returns projectData
 app.get('/all', async function (req, res) {
-
-    // const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
-    // const predictedForecast = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long},${projectData.millisecondsStart}`);
-
-    const picResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.city}&image_type=photo`)
-    // projectData.forecast = response.data;
-    // projectData.predictedForecast = predictedForecast.data;
-    projectData.pictures = picResponse.data;
-    
-    res.send(projectData); 
-    console.log('GET request received')
+    try {
+        const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long},${projectData.unixDate}?exclude=minutely,hourly,daily,alerts,flag`);
+        
+        const picResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.adminName2}&image_type=photo`);
+       
+        projectData.forecast = response.data;
+        projectData.pictures = picResponse.data;
+        
+        return res.send(projectData); 
+    } catch (error) {
+        return res.status(500).json(error.message)
+    }
 });
 
 // //TESTING GET route returns projectData
 // app.get('/all', async function (req, res) {
-//     const darkApiRecentRequest = `${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`;
+//     const darkApiRecentRequest =  `${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long},${projectData.unixDate}?exclude=minutely,hourly,daily,alerts,flag`;
 //     const darkApiRecentGet = axios.get(darkApiRecentRequest);
-//     const pixaBayRequest = `${pixaBayApiURL}?key=${pixaBayApiKey}&q=${projectData.city}&image_type=photo`;
+//     const pixaBayRequest = `${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.state}&image_type=photo`;
 //     const pixaBayRequestGet = axios.get(pixaBayRequest);
 //     const restCountriesRequest = `${restCountriesApiURL}${projectData.countryCode}`;
 //     const restCountriesGet = axios.get(restCountriesRequest);
@@ -145,9 +148,7 @@ app.get('/all', async function (req, res) {
 // });
 
 
-//,${projectData.millisecondsStart}?exclude=minutely,hourly,flag
-// https://pixabay.com/api/?key=15272497-2e3facb85e901b9b621c84398&q=yellow+flowers&image_type=photo
-// 
+
 
 // app.get('/forecast', async function(req, res) {
 //     const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);

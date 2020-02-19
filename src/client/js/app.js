@@ -3,10 +3,11 @@ const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
 
 // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
-var img = document.createElement("img");
-img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
-var src = document.getElementById("city_picture");
-src.appendChild(img);
+// var img = document.createElement("img");
+// img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
+// var src = document.getElementById("city_picture");
+// src.appendChild(img);
+
 
   
 // var API_KEY = '15202003-ed24c6df5b5db575c48c9bbdd';
@@ -21,6 +22,14 @@ src.appendChild(img);
 
 
 const serverUrl = 'http://localhost:5000';
+
+function createImage(imageSrc) {
+  const img = document.createElement("img");
+  img.src = imageSrc;
+  img.style = "width: 300px; height: 300px";
+
+  return img;
+}
 
 // Create a new date instance dynamically with JS
 function getDate() {
@@ -49,6 +58,15 @@ function performAction(event){
 
   //Gets first date of weather forecast
 
+  //Convert time to ISO format 
+  function toUnixStamp(str) // Converts mm/dd/yyyy format to Unix timestamp
+  {
+     var s=str.split("/");
+      if(s.length>1)
+      return (new Date(Date.UTC(s[2],(s[0]*1-1),(s[1]*1+1),0,0,0)).getTime()/1000.0);
+  };
+  let unixDate = toUnixStamp(startDate);
+
 
   //Calculate days from travel start date to end date. 
   let millisecondsTravelDuration = millisecondsBetweenEndTravelAnd1970-millisecondsBetweenStartTravelAnd1970;
@@ -66,6 +84,7 @@ function performAction(event){
         data.end = endDate;
         data.until = daysTillTravel;
         data.duration = daysTravelDuration;
+        data.unixStartDate = unixDate;
 
 
     
@@ -105,8 +124,10 @@ const updateUI = async () => {
       document.getElementById('end').innerHTML = projectData.endTrip;
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
  
-      // document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
-      // document.getElementyById('city_picture').appendChild(img) = projectData.pictures.hits[0].webformatURL;
+      document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+      // display image
+      const img = createImage(projectData.pictures.hits[0].webformatURL);
+      document.getElementById("city_picture").appendChild(img);
 
 
 
