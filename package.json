@@ -1,7 +1,7 @@
 {
-  "name": "weather-journal-app-12-18-2019",
+  "name": "udacity-travel-app-final-project",
   "version": "1.0.0",
-  "description": "Weather app that searches by zip code and takes in emotions of user",
+  "description": "Travel app that uses US city names and travel date to show days until trip, duration of trip, and pictures from city",
   "main": "src/server/server.js",
   "scripts": {
     "start": "node src/server/server",

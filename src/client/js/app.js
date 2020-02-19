@@ -9,32 +9,30 @@ const apiKey = '&appid=&username=jcbhass';
 // src.appendChild(img);
 
 
-  
-// var API_KEY = '15202003-ed24c6df5b5db575c48c9bbdd';
-// var URL = "https://pixabay.com/api/?key="+API_KEY+"&q="+encodeURIComponent('red roses');
-// $.getJSON(URL, function(data){
-// if (parseInt(data.totalHits) > 0)
-//     $.each(data.hits, function(i, hit){ console.log(hit.pageURL); });
-// else
-//     console.log('No hits');
-// });
-
 
 
 const serverUrl = 'http://localhost:5000';
 
 function createImage(imageSrc) {
   const img = document.createElement("img");
-  img.src = imageSrc;
-  img.style = "width: 300px; height: 300px";
+    img.src = imageSrc;
+    img.style = "width: 300px; height: 300px";
 
-  return img;
+    return img;
 }
+
+//Skycon
+function setIcons(icon, iconID) {
+  const skycons = new Skycons({ color: 'black'})
+  const currentIcon = icon.replace(/-/g, '_').toUpperCase();
+  skycons.play();
+  return skycons.set(iconID, Skycons[currentIcon]);
+}
+
 
 // Create a new date instance dynamically with JS
 function getDate() {
   const d = new Date();
-  // const today = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
   const today = `${d.getMonth()+1}.${d.getDate()}.${d.getFullYear()}`;
 
   return today;
@@ -56,9 +54,8 @@ function performAction(event){
   let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
   let daysTillTravel = Math.round(millisecondsTillTravel/(1000*60*60*24));
 
-  //Gets first date of weather forecast
-
   //Convert time to ISO format 
+  //https://www.experts-exchange.com/questions/21158791/convert-mm-dd-YYYY-to-timestamp-in-javascript.html
   function toUnixStamp(str) // Converts mm/dd/yyyy format to Unix timestamp
   {
      var s=str.split("/");
@@ -73,7 +70,7 @@ function performAction(event){
   let daysTravelDuration = (millisecondsTravelDuration/(1000*60*60*24));
 
 
-    // Gets zipcode from Open Weather Map
+    // Gets longitude and latitude from Geonames website
     getZipCode(baseURL, zipCode, apiKey) 
       .then(function(data){
         // Add data to POST request
@@ -85,10 +82,6 @@ function performAction(event){
         data.until = daysTillTravel;
         data.duration = daysTravelDuration;
         data.unixStartDate = unixDate;
-
-
-    
-
         
         console.log('REQ DATA==', data);
         
@@ -111,11 +104,8 @@ const updateUI = async () => {
       // const forecastData = forecastResponse.data;
 
       console.log('===Project Data ===', projectData);
-      // console.log('=====Pictures=====', projectData.pictures)
 
       document.getElementById('date').innerHTML = projectData.date;
-      document.getElementById('lat').innerHTML = projectData.lat;
-      document.getElementById('long').innerHTML = projectData.long;
       document.getElementById('city').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state; 
       document.getElementById('country').innerHTML = projectData.countryCode;
@@ -125,27 +115,22 @@ const updateUI = async () => {
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
  
       document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+      // document.getElementById('icon1').innerHTML = projectData.forecast.currently.icon;
+
+      
       // display image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
       document.getElementById("city_picture").appendChild(img);
 
-
-
-      // var img = document.createElement("img");
-      // img.src = projectData.cityPictures;
-      // var src = document.getElementById("city_picture");
-      // src.appendChild(img);
-
+      //skycon
+      const icon = projectData.forecast.currently.icon
+      setIcons(icon, document.getElementById('icon1'));
 
 
       console.log('Current Forecast', projectData.forecast)
-      console.log('Predicted forecast', projectData.predictedForecast)
       console.log('Pictures', projectData.pictures)
-      console.log('RestCountry Info', projectData.restCountries)
   
 
-      // document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
-      // document.getElementById('future_forecast').innerHTML = projectData.forecast. 
 
 
       // https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
