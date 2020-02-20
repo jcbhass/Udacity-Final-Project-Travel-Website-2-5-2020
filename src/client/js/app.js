@@ -1,38 +1,13 @@
 import axios from 'axios';
-import { createImage, getZipCode, getName } from './helpers';
+import { getDate, setIcons, createImage, getZipCode, getName, postData } from './helpers';
+
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = '&appid=&username=jcbhass';
 
-// https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
-// var img = document.createElement("img");
-// img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
-// var src = document.getElementById("city_picture");
-// src.appendChild(img);
-
-console.log('MY NAME', getZipCode)
-
+console.log('MY NAME', getZipCode);
 
 const serverUrl = 'http://localhost:5000';
-// https://stackoverflow.com/questions/2735881/adding-images-to-an-html-document-with-javascript
 
-
-
-//Skycon
-function setIcons(icon, iconID) {
-  const skycons = new Skycons({ color: 'black'})
-  const currentIcon = icon.replace(/-/g, '_').toUpperCase();
-  skycons.play();
-  return skycons.set(iconID, Skycons[currentIcon]);
-}
-
-
-// Create a new date instance dynamically with JS
-function getDate() {
-  const d = new Date();
-  const today = `${d.getMonth()+1}.${d.getDate()}.${d.getFullYear()}`;
-
-  return today;
-}
 
 document.getElementById('generate').addEventListener('click', performAction);
 
@@ -50,9 +25,10 @@ function performAction(event){
   let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
   let daysTillTravel = Math.round(millisecondsTillTravel/(1000*60*60*24));
 
-  //Convert time to ISO format 
+  //Convert time to ISO/Unix timestamp format 
+  // Converts mm/dd/yyyy format to Unix 
   //https://www.experts-exchange.com/questions/21158791/convert-mm-dd-YYYY-to-timestamp-in-javascript.html
-  function toUnixStamp(str) // Converts mm/dd/yyyy format to Unix timestamp
+  function toUnixStamp(str) 
   {
      var s=str.split("/");
       if(s.length>1)
@@ -71,7 +47,7 @@ function performAction(event){
       .then(function(data){
         console.log('HEY===',data);
         // Add data to POST request
-        // data.date = (new Date()).toDateString();
+    
         data.date = getDate();
         data.start = startDate;
         data.startParse = millisecondsBetweenStartTravelAnd1970;
@@ -124,26 +100,11 @@ const updateUI = async () => {
 
       console.log('Current Forecast', projectData.forecast)
       console.log('Pictures', projectData.pictures)
-  
     }
   
   } catch(error) {
     console.log("error", error); 
   }
-}
-
-
-
-
-// Async POST
-const postData = async ( url, data)=>{
-  try{
-    const response = await axios.post(url, data);
-    return  response.data;
-  } catch(error) {
-    console.log("error", error);
-}
-
 }
 
 export { performAction, getDate }
