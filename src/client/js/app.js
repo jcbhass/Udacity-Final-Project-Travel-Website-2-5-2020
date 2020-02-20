@@ -1,10 +1,19 @@
 import axios from 'axios';
-import { getDate, setIcons, createImage, getZipCode, getName, postData } from './helpers';
+import { getDate, setIcons, createImage, getZipCode, postData } from './helpers';
 
+// const baseURL = 'http://api.geonames.org/searchJSON?q=';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+// const apiKey = '&country=us&maxRows=3&username=jcbhass';
 const apiKey = '&appid=&username=jcbhass';
 
-console.log('MY NAME', getZipCode);
+// You might have to narrow down the placename in your geonames URL a bit further. Like: http://api.geonames.org/searchJSON?username=<yours here>&country=us&maxRows=3 This hardcodes the country to US
+
+// Or I've seen something like
+
+// const getCoordinatesAPI = async (city, country = '') => { const baseUrl = `http://api.geonames.org/searchJSON?q=${city}&country=${country}&maxRows=3&username=<yours here>`;
+
+
+
 
 const serverUrl = 'http://localhost:5000';
 
@@ -25,8 +34,7 @@ function performAction(event){
   let millisecondsTillTravel = millisecondsBetweenStartTravelAnd1970-millisecondsBetweenNowAnd1970;
   let daysTillTravel = Math.round(millisecondsTillTravel/(1000*60*60*24));
 
-  //Convert time to ISO/Unix timestamp format 
-  // Converts mm/dd/yyyy format to Unix 
+  //Convert time (mm/dd/yyyy) to ISO/Unix timest
   //https://www.experts-exchange.com/questions/21158791/convert-mm-dd-YYYY-to-timestamp-in-javascript.html
   function toUnixStamp(str) 
   {
@@ -39,7 +47,7 @@ function performAction(event){
 
   //Calculate days from travel start date to end date. 
   let millisecondsTravelDuration = millisecondsBetweenEndTravelAnd1970-millisecondsBetweenStartTravelAnd1970;
-  let daysTravelDuration = (millisecondsTravelDuration/(1000*60*60*24));
+  let daysTravelDuration = Math.round(millisecondsTravelDuration/(1000*60*60*24));
 
 
     // Gets longitude and latitude from Geonames website
@@ -65,8 +73,6 @@ function performAction(event){
 }
 
 const updateUI = async () => {
-    
-  // Tries Shows the data
   try{
     // Gets data from the server
     const response = await axios.get(`${serverUrl}/all`);
@@ -77,23 +83,28 @@ const updateUI = async () => {
       // const forecastData = forecastResponse.data;
 
       console.log('===Project Data ===', projectData);
-
+      // Displays today's date
       document.getElementById('date').innerHTML = projectData.date;
+
+      // Displays state information
       document.getElementById('city').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state; 
       document.getElementById('country').innerHTML = projectData.countryCode;
+
+      // Displays travel time frames
       document.getElementById('daysTill').innerHTML = projectData.daysTill; 
       document.getElementById('start').innerHTML = projectData.startTrip;
       document.getElementById('end').innerHTML = projectData.endTrip;
       document.getElementById('duration').innerHTML = projectData.durationOfTrip;
- 
+      
+      // Displays weather information
       document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
       
-      // display image
+      // Displays image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
       document.getElementById("city_picture").appendChild(img);
 
-      //skycon
+      //Displays Skycon animation
       const icon = projectData.forecast.currently.icon
       setIcons(icon, document.getElementById('icon1'));
 
@@ -109,3 +120,4 @@ const updateUI = async () => {
 
 export { performAction, getDate }
 
+ 

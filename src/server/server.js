@@ -1,18 +1,7 @@
-// Setup empty JS object to act as endpoint for all routes
 let projectData = {};
-
-// Require Express to run server and routes
 const express = require('express');
-// Start up an instance of app
 const app = express();
-/*Dependencies*/
 const bodyParser = require('body-parser');
-/* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Cors for cross origin allowance
 const cors = require('cors');
 
 const axios = require('axios');
@@ -23,14 +12,13 @@ const darkApiKey = 'd642919db3884e09597df98337d26058';
 const pixaBayApiURL = 'https://pixabay.com/api/?key=';
 const pixaBayApiKey = '15202003-ed24c6df5b5db575c48c9bbdd'; 
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
-// Initialize the main project folder
 app.use(express.static('dist'));
 
-// Setup Server
 const port = 5000;
 
-//Spin up server
 const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
 
 app.get('/', function (req, res) {

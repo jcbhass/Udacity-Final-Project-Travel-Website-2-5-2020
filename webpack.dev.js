@@ -1,11 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const polyfill = require("@babel/polyfill");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: ["@babel/polyfill", "./src/client/index.js"],
+    entry: ["@babel/polyfill", "./src/client/index.js"],  
+    mode: 'development',
+    devtool: 'source-map',
+    stats: 'verbose',
     module: {
         rules: [
             {

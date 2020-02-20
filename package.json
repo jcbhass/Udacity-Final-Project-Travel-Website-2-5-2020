@@ -1,7 +1,7 @@
 {
   "name": "udacity-travel-app-final-project",
   "version": "1.0.0",
-  "description": "Travel app that uses US city names and travel date to show days until trip, duration of trip, and pictures from city",
+  "description": "Travel app that uses US city names and travel date to show days until trip, duration of trip, and pictures from chosen city",
   "main": "src/server/server.js",
   "scripts": {
     "start": "node src/server/server",
@@ -22,6 +22,10 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jest": "^25.1.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "supertest": "^4.0.2",
+    "terser-webpack-plugin": "^2.3.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
@@ -32,10 +36,12 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "workbox-webpack-plugin": "^5.0.0"
   }
 }

@@ -52,14 +52,26 @@
     <h3>City Picture: </h3>
     <div id = "city_picture"></div>
     <!--“Powered by Dark Sky” , https://darksky.net/poweredby/ -->
-    <ion-icon name="logo-twitter-outline"></ion-icon>
-    <ion-icon name="logo-facebook-outline"></ion-icon>
-    <ion-icon name="logo-linkedin-outline"></ion-icon>
+    <ion-icon name="logo-twitter-sharp"></ion-icon>
+    <ion-icon name="logo-facebook-sharp"></ion-icon>
+    <ion-icon name="logo-linkedin-sharp"></ion-icon>
+    <!-- <ion-icon name="logo-linkedin-sharp"></ion-icon> when traveling -->
+    <ion-icon name="airplane-sharp"></ion-icon>
+    <ion-icon name="briefcase-sharp"></ion-icon>
+    <ion-icon name="home-sharp"></ion-icon>
+
     <!-- <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script> -->
 
+ 
   </div>
   </div>
   </div>
-  <script src = './src/client/js/skycons.js'></script>
+  <script src = './src/client/js/skycons.js'>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
 </body>
-</html>
+</html> 
