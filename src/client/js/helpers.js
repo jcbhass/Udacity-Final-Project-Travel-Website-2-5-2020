@@ -28,7 +28,9 @@ const createImage = (imageSrc) => {
 
 const getCityInfo = async (baseURL, cityName, apiKey)=> {
     try {
-        const res = await axios.get(baseURL+cityName+apiKey);
+        const res = await axios.get(`${baseURL}${cityName}${apiKey}`);
+        // const res = await axios.get(`${baseURL}?q=${cityName}&country=us&maxRows=3&${apiKey}`)
+        
         return res.data;
     } catch(error) {
         console.log("error", error);
@@ -36,7 +38,7 @@ const getCityInfo = async (baseURL, cityName, apiKey)=> {
 }
 
 // Async POST
-const postData = async ( url, data)=>{
+const postData = async (url, data)=>{
     try{
       const response = await axios.post(url, data);
 

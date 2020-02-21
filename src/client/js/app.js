@@ -1,24 +1,15 @@
 import axios from 'axios';
 import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
 
-// const baseURL = 'http://api.geonames.org/searchJSON?q=';
+// const baseURL = 'http://api.geonames.org/searchJSON';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
-// const apiKey = '&country=us&maxRows=3&username=jcbhass';
+// const apiKey = 'username=jcbhass';
 const apiKey = '&appid=&username=jcbhass';
-
-// You might have to narrow down the placename in your geonames URL a bit further. Like: http://api.geonames.org/searchJSON?username=<yours here>&country=us&maxRows=3 This hardcodes the country to US
-
-// Or I've seen something like
-
-// const getCoordinatesAPI = async (city, country = '') => { const baseUrl = `http://api.geonames.org/searchJSON?q=${city}&country=${country}&maxRows=3&username=<yours here>`;
-
-
-
 
 const serverUrl = 'http://localhost:5000';
 
 
-document.getElementById('generate').addEventListener('click', performAction);
+document.getElementById('generate').adEventListener('click', performAction);
 
 function performAction(event){
   // Gets city and dates from user input
@@ -83,7 +74,7 @@ const updateUI = async () => {
       document.getElementById('date').innerHTML = projectData.date;
 
       // Displays state information
-      document.getElementById('city').innerHTML = projectData.city;
+      document.getElementById('city_name').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state; 
       document.getElementById('country').innerHTML = projectData.countryCode;
 
@@ -113,7 +104,4 @@ const updateUI = async () => {
     console.log("error", error); 
   }
 }
-
-export { performAction, getDate }
-
  

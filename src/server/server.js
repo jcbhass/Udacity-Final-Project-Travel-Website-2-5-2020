@@ -1,4 +1,6 @@
-let projectData = {};
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -17,24 +19,25 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('dist'));
 
-const port = 5000;
-
-const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
-
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
+let projectData = {};
 
 // POST route
 app.post('/', function (req, res) {
     console.log('======', req.body);
+    // projectData = {
+    //     date: req.body.date,
+    //     lat: req.body.postalCodes[0].lat,
+    //     long: req.body.postalCodes[0].lat,
+    //     city: req.body.postalCodes[0].placeName
+    // }
+
     projectData.date = req.body.date;
     projectData.lat = req.body.postalCodes[0].lat;
     projectData.long = req.body.postalCodes[0].lng;
     projectData.city = req.body.postalCodes[0].placeName;
     projectData.state = req.body.postalCodes[0].adminName1;
-    projectData.adminName2 = req.body.postalCodes[0].adminName2;
     projectData.countryCode = req.body.postalCodes[0].countryCode;
+
     projectData.startTrip = req.body.start;
     projectData.convertedStart = req.body.startParse;
     projectData.unixDate = req.body.unixStartDate;
@@ -43,7 +46,7 @@ app.post('/', function (req, res) {
     projectData.durationOfTrip = req.body.duration;
     
     console.log('POST request received');
-    return res.status(200).json('Success!'); 
+    return res.status(200).json('Post Successful!'); 
 });
 
 
@@ -67,4 +70,8 @@ app.get('/all', async function (req, res) {
     }
 });
 
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
+})
 
+module.exports = app;
