@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getDate, setIcons, createImage, getZipCode, postData } from './helpers';
+import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
 
 // const baseURL = 'http://api.geonames.org/searchJSON?q=';
 const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
@@ -21,9 +21,8 @@ const serverUrl = 'http://localhost:5000';
 document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(event){
-  // Gets zipcode and feelings from user input
-  //Change the zip code to city name and change feelings 
-  const zipCode =  document.getElementById('zip').value;
+  // Gets city and dates from user input
+  const cityName =  document.getElementById('city').value;
   const startDate = document.getElementById('trip-start').value;
   const endDate = document.getElementById('trip-end').value;
 
@@ -51,7 +50,7 @@ function performAction(event){
 
 
     // Gets longitude and latitude from Geonames website
-    getZipCode(baseURL, zipCode, apiKey) 
+    getCityInfo(baseURL, cityName, apiKey) 
       .then(function(data){
         console.log('HEY===',data);
         // Add data to POST request

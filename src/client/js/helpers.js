@@ -26,9 +26,9 @@ const createImage = (imageSrc) => {
     return img;
 }
 
-const getZipCode = async (baseURL, zipCode, apiKey)=> {
+const getCityInfo = async (baseURL, cityName, apiKey)=> {
     try {
-        const res = await axios.get(baseURL+zipCode+apiKey);
+        const res = await axios.get(baseURL+cityName+apiKey);
         return res.data;
     } catch(error) {
         console.log("error", error);
@@ -46,4 +46,4 @@ const postData = async ( url, data)=>{
     } 
   }
   
-  export { getDate, setIcons, createImage, getZipCode, postData }
+  export { getDate, setIcons, createImage, getCityInfo, postData }
