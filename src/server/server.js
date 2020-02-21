@@ -68,23 +68,3 @@ app.get('/all', async function (req, res) {
 });
 
 
-
-
-// GET route returns projectData
-// app.get('/all', async function (req, res) {
-//     const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
-//     // const picResponse = await axios.get(`${pixaBayApiURL}?key=${pixaBayApiKey}&q=${projectData.city}&image_type=photo`)
-//     projectData.forecast = response.data;
-//     // projectData.pictures = picResponse.data;
-//     res.send(projectData); 
-//     console.log('GET request received')
-// });
-
-
-
-
-// app.get('/forecast', async function(req, res) {
-//     const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.lat},${projectData.long}`);
-//     return res.status(200).json(response.data);
-// })
-

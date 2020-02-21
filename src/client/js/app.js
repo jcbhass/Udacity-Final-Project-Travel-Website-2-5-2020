@@ -78,9 +78,6 @@ const updateUI = async () => {
     const projectData = response.data;
     if(projectData) {
 
-      // const forecastResponse = await axios.get(`${serverUrl}/forecast`);
-      // const forecastData = forecastResponse.data;
-
       console.log('===Project Data ===', projectData);
       // Displays today's date
       document.getElementById('date').innerHTML = projectData.date;
