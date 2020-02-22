@@ -9,7 +9,7 @@ describe('API Test', () => {
         postalCodes: [
             {lat: 'lat', lng: 'lng', placeName: 'placeName', adminName1: 'adminName1', countryCode: 'countryCode'}
         ],
-        start: 'tesStart',
+        start: 'testStart',
         startParse: 'startParse',
         unixStartDate: 'unixStartTest',
         end: 'endTest',
@@ -27,10 +27,10 @@ describe('API Test', () => {
             })
     });
 
-    describe('[GET /all]', () => {
+    describe('[GET: /all]', () => {
         axios.get.mockImplementation(() => {
             return Promise.resolve({data: {
-                hits: [{city: 'Florida', humidity: 40}]
+                hits: [{city: 'Miami', temperature: 80}]
             }});
         });
 
@@ -53,6 +53,7 @@ describe('API Test', () => {
                     expect(res.body).toHaveProperty('lat');
                     expect(res.body).toHaveProperty('state');
                     expect(res.body).toHaveProperty('forecast');
+                    expect(res.body).toHaveProperty('pictures');
                     done();
                 })
         });

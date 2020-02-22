@@ -3,7 +3,7 @@ import axios from 'axios';
 // Create a new date instance dynamically with JS
 const getDate =  () => {
     const d = new Date();
-    const today = `${d.getMonth()+1}.${d.getDate()}.${d.getFullYear()}`;
+    const today = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
 
     return today;
 }
@@ -28,8 +28,8 @@ const createImage = (imageSrc) => {
 
 const getCityInfo = async (baseURL, cityName, apiKey)=> {
     try {
-        const res = await axios.get(`${baseURL}${cityName}${apiKey}`);
-        // const res = await axios.get(`${baseURL}?q=${cityName}&country=us&maxRows=3&${apiKey}`)
+        // const res = await axios.get(`${baseURL}${cityName}${apiKey}`);
+        const res = await axios.get(`${baseURL}?q=${cityName}&country=us&maxRows=3&${apiKey}`)
         
         return res.data;
     } catch(error) {

@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
 
-// const baseURL = 'http://api.geonames.org/searchJSON';
-const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
-// const apiKey = 'username=jcbhass';
-const apiKey = '&appid=&username=jcbhass';
+const baseURL = 'http://api.geonames.org/searchJSON';
+  // const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+const apiKey = 'username=jcbhass';
+// const apiKey = '&appid=&username=jcbhass';
 
 const serverUrl = 'http://localhost:5000';
 
 
-document.getElementById('generate').adEventListener('click', performAction);
+document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(event){
   // Gets city and dates from user input
@@ -76,7 +76,7 @@ const updateUI = async () => {
       // Displays state information
       document.getElementById('city_name').innerHTML = projectData.city;
       document.getElementById('state').innerHTML = projectData.state; 
-      document.getElementById('country').innerHTML = projectData.countryCode;
+      document.getElementById('country').innerHTML = projectData.country;
 
       // Displays travel time frames
       document.getElementById('daysTill').innerHTML = projectData.daysTill; 
@@ -104,4 +104,10 @@ const updateUI = async () => {
     console.log("error", error); 
   }
 }
- 
+
+//Remove
+export { performAction, getDate }
+
+
+
+

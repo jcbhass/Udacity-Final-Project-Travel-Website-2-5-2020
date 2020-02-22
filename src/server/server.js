@@ -26,25 +26,32 @@ app.post('/', function (req, res) {
     console.log('======', req.body);
     // projectData = {
     //     date: req.body.date,
-    //     lat: req.body.postalCodes[0].lat,
-    //     long: req.body.postalCodes[0].lat,
-    //     city: req.body.postalCodes[0].placeName
+    //     lat: req.body.geonames[0].lat,
+    //     long: req.body.geonamse[0].lng,
+    //     city: req.body.geonames[0].toponymName,
+    //     state: req.body.geonames[0].adminName1,
+    //     country: req.body.countryName,
+    //     startTrip: req.body.start,
+    //     convertedStart: req.body.startParse,
+    //     unixDate: req.body.unixStartDate,
+    //     endTrip: req.body.end, 
+    //     daysTill: req.body.until, 
+    //     durationOfTrip: req.body.duration
     // }
 
-    projectData.date = req.body.date;
-    projectData.lat = req.body.postalCodes[0].lat;
-    projectData.long = req.body.postalCodes[0].lng;
-    projectData.city = req.body.postalCodes[0].placeName;
-    projectData.state = req.body.postalCodes[0].adminName1;
-    projectData.countryCode = req.body.postalCodes[0].countryCode;
 
+    projectData.date = req.body.date;
+    projectData.lat = req.body.geonames[0].lat;
+    projectData.long = req.body.geonames[0].lng;
+    projectData.city = req.body.geonames[0].toponymName;
+    projectData.state = req.body.geonames[0].adminName1;
+    projectData.country = req.body.geonames[0].countryName;
     projectData.startTrip = req.body.start;
     projectData.convertedStart = req.body.startParse;
     projectData.unixDate = req.body.unixStartDate;
     projectData.endTrip = req.body.end;
     projectData.daysTill = req.body.until;
     projectData.durationOfTrip = req.body.duration;
-    
     console.log('POST request received');
     return res.status(200).json('Post Successful!'); 
 });
@@ -60,7 +67,7 @@ app.get('/all', async function (req, res) {
         projectData.pictures = picResponse.data;
         if(picResponse.data.hits.length === 0) {
             console.log('Alternate pics used!!!')
-            const alternatePicResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.state}&image_type=photo`);
+            const alternatePicResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.country}&image_type=photo`);
             projectData.pictures = alternatePicResponse.data;
         }
 
