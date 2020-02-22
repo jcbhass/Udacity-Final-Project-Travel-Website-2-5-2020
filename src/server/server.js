@@ -1,3 +1,5 @@
+const projectData = {};
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -19,12 +21,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('dist'));
 
-let projectData = {};
 
 // POST route
 app.post('/', function (req, res) {
-    console.log('======', req.body);
-    // projectData = {
+    // const projectData = {
     //     date: req.body.date,
     //     lat: req.body.geonames[0].lat,
     //     long: req.body.geonamse[0].lng,
@@ -34,11 +34,10 @@ app.post('/', function (req, res) {
     //     startTrip: req.body.start,
     //     convertedStart: req.body.startParse,
     //     unixDate: req.body.unixStartDate,
-    //     endTrip: req.body.end, 
-    //     daysTill: req.body.until, 
+    //     endTrip: req.body.end,
+    //     daysTill: req.body.until,
     //     durationOfTrip: req.body.duration
     // }
-
 
     projectData.date = req.body.date;
     projectData.lat = req.body.geonames[0].lat;
@@ -52,6 +51,7 @@ app.post('/', function (req, res) {
     projectData.endTrip = req.body.end;
     projectData.daysTill = req.body.until;
     projectData.durationOfTrip = req.body.duration;
+    
     console.log('POST request received');
     return res.status(200).json('Post Successful!'); 
 });

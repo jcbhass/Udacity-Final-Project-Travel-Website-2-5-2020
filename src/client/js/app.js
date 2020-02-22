@@ -86,14 +86,17 @@ const updateUI = async () => {
       
       // Displays weather information
       document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
+      document.getElementById('temperature').innerHTML = `${projectData.forecast.currently.temperature}&deg`;
       
+      //Displays Skycon animation
+      const icon = projectData.forecast.currently.icon
+      setIcons(icon, document.getElementById('icon1'));
+
       // Displays image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
       document.getElementById("city_picture").appendChild(img);
 
-      //Displays Skycon animation
-      const icon = projectData.forecast.currently.icon
-      setIcons(icon, document.getElementById('icon1'));
+      
 
 
       console.log('Current Forecast', projectData.forecast)
