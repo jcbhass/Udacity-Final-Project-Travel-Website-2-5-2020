@@ -10,11 +10,14 @@ const cors = require('cors');
 
 const axios = require('axios');
 
-const darkApiURL = 'https://api.darksky.net/forecast';
-const darkApiKey = 'd642919db3884e09597df98337d26058';
-
-const pixaBayApiURL = 'https://pixabay.com/api/?key=';
-const pixaBayApiKey = '15202003-ed24c6df5b5db575c48c9bbdd'; 
+// const darkApiURL = 'https://api.darksky.net/forecast';
+// const darkApiKey = 'd642919db3884e09597df98337d26058';
+const darkApiURL = process.env.DARKSKY_API;
+const darkApiKey = process.env.DARKSKY_KEY;
+// const pixaBayApiURL = 'https://pixabay.com/api/?key=';
+// const pixaBayApiKey = '15202003-ed24c6df5b5db575c48c9bbdd'; 
+const pixaBayApiURL = process.env.PIXABAY_API;
+const pixaBayApiKey = process.env.PIXABAY_KEY; 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -51,7 +54,7 @@ app.post('/', function (req, res) {
     projectData.endTrip = req.body.end;
     projectData.daysTill = req.body.until;
     projectData.durationOfTrip = req.body.duration;
-    
+
     console.log('POST request received');
     return res.status(200).json('Post Successful!'); 
 });

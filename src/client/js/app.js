@@ -2,9 +2,8 @@ import axios from 'axios';
 import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
 
 const baseURL = 'http://api.geonames.org/searchJSON';
-  // const baseURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 const apiKey = 'username=jcbhass';
-// const apiKey = '&appid=&username=jcbhass';
+
 
 const serverUrl = 'http://localhost:5000';
 
