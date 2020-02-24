@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const polyfill = require("@babel/polyfill");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const DotenvWebpack = require('dotenv-webpack');
 
 module.exports = {
     entry: ["@babel/polyfill", "./src/client/index.js"],  
@@ -23,6 +24,7 @@ module.exports = {
         ]
      },
      plugins: [
+        new DotenvWebpack(),
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
@@ -32,6 +34,6 @@ module.exports = {
             verbose: true,
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-    })
+        }),
     ]    
 }

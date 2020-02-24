@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Weather Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-</head>
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"><link href="main.css" rel="stylesheet"></head>
  <body>
 <h1 id = "app">
   <h1 class ="holder headline">Travel Planner</h1>
-  <div class ="holder zip">
-    <label for="zip">Enter city and country you are traveling to: </label>
-    <input type="text" id="zip" placeholder="city, state">
+  <div class ="holder city">
+    <label for="city">Enter city and country you are traveling to: </label>
+    <input type="text" id="city" placeholder="city, state">
   </div>
   <div class ="holder feel">
     <label for="travelingStart">When is your travel START date?</label>
@@ -18,43 +17,43 @@
     <div></div>
     <label for="travelingEnd">When is your travel END date?</label>
     <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
-
-    <!-- <button id="generate" type = "submit"> Generate </button> -->
     <div></div>
-    <!-- <input type = 'text' id = 'startDate' placeholder = "mm/dd/yyyy"> -->
-    <input id="generate" type="submit" name="" value="submit" onsubmit="return performAction(event)"></input>
+    <!-- <input type="submit" name=""></input> -->
+    <input id="generate" type="submit" ></input>
+    <!-- name="" value="submit" onsubmit="return performAction(event)" -->
   </div>
   <div class ="holder entry">
     <div class = "title">Most Recent Entry</div>
     <div id = "entryHolder">
     <div></div>
     <!--Have the section below as a const markup section Udemy course JS2020 Building the Search View Part 1 -->
-    <h3>Today's date: <span id = "date"></span></h3>
     <!-- <div id = "date"></div>  -->
-    <h3>City Name: </h3>
-    <div id = "city"></div>
-    <h3>State: </h3>
-    <div id = "state"></div>
-    <h3>Country: </h3>
-    <div id = "country"></div>
- 
-    <h3>Days Until Trip: </h3>
-    <div id = "daysTill"></div>
-    <h3>Departing: </h3>
-    <div id = "start"></div>
-    <h3>Returning: </h3>
-    <div id = "end"></div>
-    <h3>Duration: </h3>
-    <div id = "duration"></div>
-    <h3>Weather Forecast: </h3>
-    <div id = "current_forecast"></div>
-    <canvas id="icon1" width="75" height="75"></canvas>
-    <h3>City Picture: </h3>
     <div id = "city_picture"></div>
+    <div id = "trip_info"></div>
+    <canvas id="icon1" width="75" height="75"></canvas>
+    <div id = "current_forecast"></div>
+    <div id="temperature"></div>
     <!--“Powered by Dark Sky” , https://darksky.net/poweredby/ -->
+    <ion-icon name="logo-twitter-sharp"></ion-icon>
+    <ion-icon name="logo-facebook-sharp"></ion-icon>
+    <ion-icon name="logo-linkedin-sharp"></ion-icon>
+    <!-- <ion-icon name="logo-linkedin-sharp"></ion-icon> when traveling -->
+    <ion-icon name="airplane-sharp"></ion-icon>
+    <ion-icon name="briefcase-sharp"></ion-icon>
+    <ion-icon name="home-sharp"></ion-icon>
+    <ion-icon name="cloud-sharp"></ion-icon>
+    <ion-icon name="cloudy-sharp"></ion-icon>
+    <!-- <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script> -->
   </div>
   </div>
   </div>
-  <script src = './src/client/js/skycons.js'></script>
+  <script src = '/src/client/js/skycons.js'></script>
+  <script>
+     if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+  </script>
 <script type="text/javascript" src="main.js"></script></body>
-</html>
+</html> 

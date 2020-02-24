@@ -1,6 +1,7 @@
 // Remove 
-import { performAction, getDate } from './js/app'
+// import { performAction, getDate } from './js/app'
+import './js/app';
+import './styles/main.scss';
 
-import './styles/main.scss'
 
 console.log('Hello---');

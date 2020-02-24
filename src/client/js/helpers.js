@@ -41,7 +41,7 @@ const getCityInfo = async (baseURL, cityName, apiKey)=> {
 const postData = async (url, data)=>{
     try{
       const response = await axios.post(url, data);
-
+        console.log('TEST----',response.data)
       return  response.data;
     } catch(error) {
       console.log("error", error);

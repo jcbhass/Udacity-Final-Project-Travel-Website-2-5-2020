@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
 
-const baseURL = 'http://api.geonames.org/searchJSON';
-const apiKey = 'username=jcbhass';
+const baseURL = process.env.GEONAMES_API;
+const apiKey = process.env.GEONAMES_KEY;
 
 
 const serverUrl = 'http://localhost:5000';
 
 
-document.getElementById('generate').addEventListener('click', performAction);
 
 function performAction(event){
   // Gets city and dates from user input
@@ -56,7 +55,7 @@ function performAction(event){
         console.log('REQ DATA==', data);
         
         // Sends data to the server 
-        return postData(`${serverUrl}/`, data);
+        return postData(`${serverUrl}/information`, data);
       })
       .then(updateUI);
 }
@@ -77,7 +76,7 @@ const updateUI = async () => {
 
 
       // Displays city and trip information
-      document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.city}, ${projectData.state} is ${projectData.daysTill} days away and will last ${projectData.durationOfTrip} days.`;
+      document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.geoname.city}, ${projectData.geoname.state} is ${projectData.daysTill} days away and will last ${projectData.durationOfTrip} days.`;
      
       //Displays Skycon animation
       const icon = projectData.forecast.currently.icon
@@ -95,8 +94,10 @@ const updateUI = async () => {
   }
 }
 
+document.getElementById('generate').addEventListener('click', performAction);
+console.log('HEY======XXX=')
 //Remove
-export { performAction, getDate }
+// export { performAction, getDate }
 
 
 

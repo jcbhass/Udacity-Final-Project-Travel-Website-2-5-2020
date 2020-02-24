@@ -6,7 +6,7 @@ jest.mock('axios');
 describe('API Test', () => {
     const postDataTest = {
         date: new Date(),
-        postalCodes: [
+        geonames: [
             {lat: 'lat', lng: 'lng', placeName: 'placeName', adminName1: 'adminName1', countryCode: 'countryCode'}
         ],
         start: 'testStart',

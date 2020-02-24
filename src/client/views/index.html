@@ -19,7 +19,8 @@
     <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
     <div></div>
     <!-- <input type="submit" name=""></input> -->
-    <input id="generate" type="submit" name="" value="submit" onsubmit="return performAction(event)"></input>
+    <input id="generate" type="submit" ></input>
+    <!-- name="" value="submit" onsubmit="return performAction(event)" -->
   </div>
   <div class ="holder entry">
     <div class = "title">Most Recent Entry</div>
@@ -46,12 +47,13 @@
   </div>
   </div>
   </div>
-  <script src = './src/client/js/skycons.js'>
-    if ('serviceWorker' in navigator) {
+  <script src = '/src/client/js/skycons.js'></script>
+  <script>
+     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js');
         });
     }
-</script>
+  </script>
 </body>
 </html> 
