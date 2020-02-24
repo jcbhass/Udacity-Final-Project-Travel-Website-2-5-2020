@@ -71,36 +71,24 @@ const updateUI = async () => {
 
       console.log('===Project Data ===', projectData);
       // Displays today's date
-      document.getElementById('date').innerHTML = projectData.date;
-
-      // Displays state information
-      document.getElementById('city_name').innerHTML = projectData.city;
-      document.getElementById('state').innerHTML = projectData.state; 
-      document.getElementById('country').innerHTML = projectData.country;
-
-      // Displays travel time frames
-      document.getElementById('daysTill').innerHTML = projectData.daysTill; 
-      document.getElementById('start').innerHTML = projectData.startTrip;
-      document.getElementById('end').innerHTML = projectData.endTrip;
-      document.getElementById('duration').innerHTML = projectData.durationOfTrip;
-      
-      // Displays weather information
-      document.getElementById('current_forecast').innerHTML = projectData.forecast.currently.summary;
-      document.getElementById('temperature').innerHTML = `${projectData.forecast.currently.temperature}&deg`;
-      
-      //Displays Skycon animation
-      const icon = projectData.forecast.currently.icon
-      setIcons(icon, document.getElementById('icon1'));
 
       // Displays image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
       document.getElementById("city_picture").appendChild(img);
 
+
+      // Displays city and trip information
+      document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.city}, ${projectData.state} is ${projectData.daysTill} days away and will last ${projectData.durationOfTrip} days.`;
+     
+      //Displays Skycon animation
+      const icon = projectData.forecast.currently.icon
+      setIcons(icon, document.getElementById('icon1'));
+
+      // Displays weather information
+      document.getElementById('current_forecast').innerHTML = `The weather forecast for ${projectData.startTrip} is ${(projectData.forecast.currently.summary).toLowerCase()} with a temperature of ${projectData.forecast.currently.temperature}&deg.`;
       
-
-
-      console.log('Current Forecast', projectData.forecast)
-      console.log('Pictures', projectData.pictures)
+      console.log('Current Forecast====', projectData.forecast)
+      console.log('Pictures====', projectData.pictures)
     }
   
   } catch(error) {
