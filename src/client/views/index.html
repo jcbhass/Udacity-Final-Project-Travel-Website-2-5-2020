@@ -1,55 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Weather Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet"></head>
- <body>
-<h1 id = "app">
-  <h1 class ="holder headline">Travel Planner</h1>
-  <div class ="holder city">
-    <label for="city">Enter city and country you are traveling to: </label>
-    <input type="text" id="city" placeholder="city, state">
-  </div>
-  <div class ="holder feel">
-    <label for="travelingStart">When is your travel START date?</label>
-    <textarea class= "myInput" id="trip-start" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
-    <div></div>
-    <label for="travelingEnd">When is your travel END date?</label>
-    <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
-    <div></div>
-    <!-- <input type="submit" name=""></input> -->
-    <input id="generate" type="submit" ></input>
-    <!-- name="" value="submit" onsubmit="return performAction(event)" -->
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-    <div id = "entryHolder">
-    <div></div>
-    <!--Have the section below as a const markup section Udemy course JS2020 Building the Search View Part 1 -->
-    <!-- <div id = "date"></div>  -->
-    <div id = "city_picture"></div>
-    <div id = "trip_info"></div>
-    <canvas id="icon1" width="75" height="75"></canvas>
-    <div id = "current_forecast"></div>
-    <div id="temperature"></div>
-    <!--“Powered by Dark Sky” , https://darksky.net/poweredby/ -->
-    <ion-icon name="logo-twitter-sharp"></ion-icon>
-    <ion-icon name="logo-facebook-sharp"></ion-icon>
-    <ion-icon name="logo-linkedin-sharp"></ion-icon>
-    <!-- <ion-icon name="logo-linkedin-sharp"></ion-icon> when traveling -->
-    <ion-icon name="airplane-sharp"></ion-icon>
-    <ion-icon name="briefcase-sharp"></ion-icon>
-    <ion-icon name="home-sharp"></ion-icon>
-    <ion-icon name="cloud-sharp"></ion-icon>
-    <ion-icon name="cloudy-sharp"></ion-icon>
+  <meta charset="UTF-8">
+  <title>Travel Planner</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="nested-Grid">
+    <h1 class="holder_headline">Travel Planner</h1>
+    <div class="holder_city">
+      <label for="city">Enter city and state you are traveling to: </label>
+      <input type="text" id="city" placeholder="city, state">
+    </div>
+    <div class="holder_travel">
+      <label for="travelingStart">When is your travel START date?</label>
+      <textarea class="myInput" id="trip-start" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
+      <div></div>
+      <label for="travelingEnd">When is your travel END date?</label>
+      <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
+      <div></div>
+      <input id="generate" type="submit" ></input>
+ 
+    </div>
+    <div class ="holder_results">
+      <div id = "city_picture"></div>
+      <div id = "trip_info"></div>
+      <canvas id="icon1" width="75" height="75"></canvas>
+      <div id = "current_forecast"></div>
+      <div id="temperature"></div>
+      <!--“Powered by Dark Sky” , https://darksky.net/poweredby/ -->
+      <ion-icon name="logo-twitter-sharp"></ion-icon>
+      <ion-icon name="logo-facebook-sharp"></ion-icon>
+      <ion-icon name="logo-linkedin-sharp"></ion-icon>
+      <!-- <ion-icon name="logo-linkedin-sharp"></ion-icon> when traveling -->
+      <ion-icon name="airplane-sharp"></ion-icon>
+      <ion-icon name="briefcase-sharp"></ion-icon>
+      <ion-icon name="home-sharp"></ion-icon>
+      <ion-icon name="cloud-sharp"></ion-icon>
+      <ion-icon name="cloudy-sharp"></ion-icon>
     <!-- <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script> -->
+    <footer></footer>
   </div>
   </div>
-  </div>
+</div>
   <script src = '/src/client/js/skycons.js'></script>
   <script>
-     if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js');
         });
