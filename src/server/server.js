@@ -10,12 +10,9 @@ const cors = require('cors');
 
 const axios = require('axios');
 
-// const darkApiURL = 'https://api.darksky.net/forecast';
-// const darkApiKey = 'd642919db3884e09597df98337d26058';
 const darkApiURL = process.env.DARKSKY_API;
 const darkApiKey = process.env.DARKSKY_KEY;
-// const pixaBayApiURL = 'https://pixabay.com/api/?key=';
-// const pixaBayApiKey = '15202003-ed24c6df5b5db575c48c9bbdd'; 
+
 const pixaBayApiURL = process.env.PIXABAY_API;
 const pixaBayApiKey = process.env.PIXABAY_KEY; 
 
