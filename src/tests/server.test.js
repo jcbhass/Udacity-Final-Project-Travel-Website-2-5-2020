@@ -7,18 +7,18 @@ describe('API Test', () => {
     const postDataTest = {
         date: new Date(),
         geonames: [
-            {lat: 'lat', lng: 'lng', placeName: 'placeName', adminName1: 'adminName1', countryCode: 'countryCode'}
+            {lat: 'test lat', lng: 'test longitude', toponymName: 'test toponymName', adminName1: 'test adminName1', countryName: 'test countryName'}
         ],
         start: 'testStart',
-        startParse: 'startParse',
-        unixStartDate: 'unixStartTest',
-        end: 'endTest',
-        until: 'untilTest',
-        duration: 'durationTest'
+        startParse: 'teststartParse',
+        unixStartDate: 'testUnixStart',
+        end: 'testEnd',
+        until: 'testUntil',
+        duration: 'testDuration'
     }
-    it('[POST: /] It should return information and a picture of the entered city', (done) => {
+    it('[POST: /information] It should return information and a picture of the entered city', (done) => {
         request(app)
-            .post('/')
+            .post('/information')
             .send(postDataTest)
             .expect(200)
             .end((err, res) => {
@@ -36,7 +36,7 @@ describe('API Test', () => {
 
         beforeEach((done) => {
             request(app)
-            .post('/')
+            .post('/information')
             .send(postDataTest)
             .end(() => done())
         });
@@ -46,14 +46,21 @@ describe('API Test', () => {
                 .get('/all')
                 .expect(200)
                 .end((err, res) => {
-                    // console.log('ERR', err);
-                    // console.log('RES ====099999 ', res.body);
-          
-                    expect(res.body).toHaveProperty('date');
-                    expect(res.body).toHaveProperty('lat');
-                    expect(res.body).toHaveProperty('state');
+                    expect(res.body).toHaveProperty('date'); 
+                    expect(res.body).toHaveProperty('startTrip'); 
+                    expect(res.body).toHaveProperty('convertedStart'); 
+                    expect(res.body).toHaveProperty('unixDate'); 
+                    expect(res.body).toHaveProperty('endTrip'); 
+                    expect(res.body).toHaveProperty('daysTill'); 
+                    expect(res.body).toHaveProperty('durationOfTrip'); 
+                    expect(res.body).toHaveProperty('geoname');
                     expect(res.body).toHaveProperty('forecast');
                     expect(res.body).toHaveProperty('pictures');
+                    expect(res.body.geoname).toHaveProperty('lat');
+                    expect(res.body.geoname).toHaveProperty('long');
+                    expect(res.body.geoname).toHaveProperty('city');
+                    expect(res.body.geoname).toHaveProperty('state');
+                    expect(res.body.geoname).toHaveProperty('country');
                     done();
                 })
         });

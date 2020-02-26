@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const polyfill = require("@babel/polyfill");
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -13,7 +12,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
-    entry: ["@babel/polyfill", "./src/client/index.js"],
+    entry: "./src/client/index.js",
     mode: 'production',
     optimization: {
         minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})]

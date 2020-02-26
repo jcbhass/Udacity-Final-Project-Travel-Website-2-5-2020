@@ -5,66 +5,85 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: Lato, Helvetica, sans-serif;
-
+    color: white;
 }
 
 ion-icon {
     --ionicon-stroke-width: 16px;
 }
 
-.container {
-    display: grid;
-    height: 90vh;
-    width: 80vw;
-    margin: auto;
-    align-items: center;
-    justify-content: center;  
-    grid-template-columns: 25%, 50%, 25%;
-    grid-template-rows: 30%, 70%;
-    grid-template-areas: 
-    'top top top'
-    'city city city'
-    'travel travel travel'
-    'results results results'
-    'bottom bottom bottom';
-    border: 5px solid rgba(197, 42, 4, 0.733);
-}
+// .container {
+//     display: grid;
+//     grid-auto-columns: 50%, 50%;
+//     // grid-template-rows: 30%, 70%;
+//     grid-auto-rows: 75px;
+//     // grid-auto-rows: minmax(25px);
+//     grid-template-areas: 
+//     'top top'
+//     'explanation explanation'
+//     'city city'
+//     'travel travel'
+//     'results image'
+//     'bottom bottom';
+//     border: 5px solid rgba(197, 42, 4, 0.733);
+//     height: 90vh;
+//     width: 80vw;
+//     margin: auto;
+//     align-items: center;
+//     justify-content: stretch;  
+// }
 
-.holder_headline {
-    grid-area: top;
-    display: flex;
-    border: 1px solid rgba(67, 125, 235, 0.733);
-    font-size: 65px;
-    color: white;
-}
+// .holder_headline {
+//     grid-area: top;
+//     border: 1px solid rgba(67, 125, 235, 0.733);
+//     font-size: 65px;
+//     color: white;
+//     margin: 0;
+// }
 
-.holder_city {
-    grid-area: city;
-    border: 2px solid rgba(197, 42, 4, 0.733);
-    // grid-column: ;
-    // grid-row: ;
-    color: white;
-}
+// .explanation {
+//     grid-area: explanation;
+//     font-size: 35px;
+//     color: white;
+//     margin: 0;
+// }
+// .holder_city {
+//     grid-area: city;
+//     border: 2px solid rgba(197, 42, 4, 0.733);
+//     // grid-column: ;
+//     // grid-row: ;
+//     font-size: 28px;
+//     color: white;
+//     margin: 0;
+// }
 
-.holder_travel {
-    grid-area: travel;
-    border: 2px solid rgba(197, 42, 4, 0.733);
-    color: white;
-}
+// .holder_travel {
+//     grid-area: travel;
+//     border: 2px solid rgba(197, 42, 4, 0.733);
+//     font-size: 28px;
+//     color: white;
+//     margin: 0;
+// }
 
-.holder_results {
-    grid-area: results;
-    border: 2px solid rgba(67, 125, 235, 0.733);
-    align-items: center;
-    justify-content: center;  
-    color: black;
-}
+// .holder_results {
+//     grid-area: results;
+//     border: 2px solid rgba(67, 125, 235, 0.733);
+//     align-items: center;
+//     justify-content: center;  
+//     color: black;
+//     margin-top: 100px;
+// }
 
-#generate {
-    align-items: center;
-}
+// // #generate {
+// //     align-items: center;
+// // }
 
-footer {
-    grid-area: footer;
-    color: black;
-}
+// #city_picture {
+//     grid-area: picture;
+//     margin: 0;
+// }
+// footer {
+//     grid-area: footer;
+//     color: black;
+//     margin: 0;
+// }
