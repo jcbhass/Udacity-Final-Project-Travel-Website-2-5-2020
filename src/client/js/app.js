@@ -91,6 +91,7 @@ const updateUI = async () => {
 }
 
 document.getElementById('generate').addEventListener('click', performAction);
+// onclick="setTimeout(function () { window.location.reload(); }, 10)"
 console.log('HEY======XXX=')
 
 
