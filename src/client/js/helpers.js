@@ -21,14 +21,13 @@ const setIcons = (icon, iconID) => {
 const createImage = (imageSrc) => {
     const img = document.createElement("img");
     img.src = imageSrc;
-    img.style = "width: 300px; height: 300px";
+    img.style = "width: 200px; height: 200px";
 
     return img;
 }
 
 const getCityInfo = async (baseURL, cityName, apiKey)=> {
     try {
-        // const res = await axios.get(`${baseURL}${cityName}${apiKey}`);
         const res = await axios.get(`${baseURL}?q=${cityName}&country=us&maxRows=3&${apiKey}`)
         
         return res.data;

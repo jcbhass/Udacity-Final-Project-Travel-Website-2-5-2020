@@ -4,10 +4,7 @@ import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers
 const baseURL = process.env.GEONAMES_API;
 const apiKey = process.env.GEONAMES_KEY;
 
-
 const serverUrl = 'http://localhost:5000';
-
-
 
 function performAction(event){
   // Gets city and dates from user input
@@ -68,7 +65,6 @@ const updateUI = async () => {
     if(projectData) {
 
       console.log('===Project Data ===', projectData);
-      // Displays today's date
 
       // Displays image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
@@ -76,7 +72,7 @@ const updateUI = async () => {
 
 
       // Displays city and trip information
-      document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.geoname.city}, ${projectData.geoname.state} is ${projectData.daysTill} days away and will last ${projectData.durationOfTrip} days.`;
+      document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.geoname.city}, ${projectData.geoname.state} is ${projectData.daysTill} day(s) away and will last ${projectData.durationOfTrip} days.`;
      
       //Displays Skycon animation
       const icon = projectData.forecast.currently.icon
@@ -96,8 +92,7 @@ const updateUI = async () => {
 
 document.getElementById('generate').addEventListener('click', performAction);
 console.log('HEY======XXX=')
-//Remove
-// export { performAction, getDate }
+
 
 
 

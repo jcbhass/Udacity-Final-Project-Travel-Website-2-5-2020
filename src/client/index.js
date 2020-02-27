@@ -1,5 +1,3 @@
-// Remove 
-// import { performAction, getDate } from './js/app'
 import './js/app';
 import './styles/main.scss';
 

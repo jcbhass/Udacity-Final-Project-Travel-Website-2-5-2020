@@ -1,89 +1,50 @@
-// $themeColor-Dark:rgba(120, 176, 241, 0.733);
 body {
-    background: linear-gradient(rgb(120, 176, 246), rgb(223, 234, 248));
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background: linear-gradient(rgb(32, 117, 221), rgb(189, 213, 245));
+    height: 100vh;
+    height: 100%;
+    width: 70vw;
     font-family: Lato, Helvetica, sans-serif;
-    color: white;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    margin: 10em;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    margin: auto;
+}
+  
+h1 {
+    font-size: 55px;
+}
+
+label {
+    font-size: 18px;
+}
+
+.explanation {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.myInput {
+    text-align: center;
+}
+
+.results {
+    color: #000;
 }
 
 ion-icon {
     --ionicon-stroke-width: 16px;
 }
 
-// .container {
-//     display: grid;
-//     grid-auto-columns: 50%, 50%;
-//     // grid-template-rows: 30%, 70%;
-//     grid-auto-rows: 75px;
-//     // grid-auto-rows: minmax(25px);
-//     grid-template-areas: 
-//     'top top'
-//     'explanation explanation'
-//     'city city'
-//     'travel travel'
-//     'results image'
-//     'bottom bottom';
-//     border: 5px solid rgba(197, 42, 4, 0.733);
-//     height: 90vh;
-//     width: 80vw;
-//     margin: auto;
-//     align-items: center;
-//     justify-content: stretch;  
-// }
-
-// .holder_headline {
-//     grid-area: top;
-//     border: 1px solid rgba(67, 125, 235, 0.733);
-//     font-size: 65px;
-//     color: white;
-//     margin: 0;
-// }
-
-// .explanation {
-//     grid-area: explanation;
-//     font-size: 35px;
-//     color: white;
-//     margin: 0;
-// }
-// .holder_city {
-//     grid-area: city;
-//     border: 2px solid rgba(197, 42, 4, 0.733);
-//     // grid-column: ;
-//     // grid-row: ;
-//     font-size: 28px;
-//     color: white;
-//     margin: 0;
-// }
-
-// .holder_travel {
-//     grid-area: travel;
-//     border: 2px solid rgba(197, 42, 4, 0.733);
-//     font-size: 28px;
-//     color: white;
-//     margin: 0;
-// }
-
-// .holder_results {
-//     grid-area: results;
-//     border: 2px solid rgba(67, 125, 235, 0.733);
-//     align-items: center;
-//     justify-content: center;  
-//     color: black;
-//     margin-top: 100px;
-// }
-
-// // #generate {
-// //     align-items: center;
-// // }
-
-// #city_picture {
-//     grid-area: picture;
-//     margin: 0;
-// }
-// footer {
-//     grid-area: footer;
-//     color: black;
-//     margin: 0;
-// }
+canvas {
+    position: relative;
+	display: block;
+    margin-right: auto;
+    margin-left: auto;
+}

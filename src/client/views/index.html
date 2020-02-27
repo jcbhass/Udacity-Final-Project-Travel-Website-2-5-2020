@@ -6,11 +6,11 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <container class="container">
+  <main class="container">
     <h1 class="holder_headline">Travel Planner</h1>
-    <h2 class="explanation">Help decide your travel needs by checking the forecasted temperature for your trip.</h2>
-      <label for="city">Enter city and state you are traveling to: </label>
-      <input type="text" id="city" placeholder="city, state">
+    <h2 class="explanation">Help decide your travel needs. Check the weather during your trip.</h2> 
+    <label for="city">Enter city and state you are traveling to: </label>      
+    <input class="myInput" type="text" id="city" placeholder="city, state">
   </br>
       <label for="travelingStart">When is your travel START date?</label>
       <textarea class="myInput" id="trip-start" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
@@ -18,26 +18,20 @@
       <label for="travelingEnd">When is your travel END date?</label>
       <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
   </br>
+  </br>
       <input id="generate" type="submit" ></input>
-
+  </br>
       <div id="city_picture"></div>
-      <div id="trip_info"></div>
-      <canvas id="icon1" width="75" height="75"></canvas>
-      <div id="current_forecast"></div>
-      <div id="temperature"></div>
-      <!--“Powered by Dark Sky” , https://darksky.net/poweredby/ -->
-      <!-- <ion-icon name="logo-twitter-sharp"></ion-icon>
-      <ion-icon name="logo-facebook-sharp"></ion-icon>
-      <ion-icon name="logo-linkedin-sharp"></ion-icon>
-      <!-- <ion-icon name="logo-linkedin-sharp"></ion-icon> when traveling -->
-      <!-- <ion-icon name="airplane-sharp"></ion-icon>
-      <ion-icon name="briefcase-sharp"></ion-icon>
-      <ion-icon name="home-sharp"></ion-icon>
-      <ion-icon name="cloud-sharp"></ion-icon>
-      <ion-icon name="cloudy-sharp"></ion-icon> -->
-    <!-- <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script> -->
-    <footer></footer>
-</container>
+      <div class="results" id="trip_info"></div>
+      <canvas id="icon1" width="200" height="200"></canvas>
+      <div class="results" id="current_forecast"></div>
+      <div class="results" id="temperature"></div>
+    </br>
+    </br>
+    <footer>
+      <a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a>
+    </footer>
+    </main>
   <script src = '/src/client/js/skycons.js'></script>
   <script>
     if ('serviceWorker' in navigator) {
