@@ -14,3 +14,14 @@ canvas {
     margin-right: auto;
     margin-left: auto;
 }
+
+a:link, 
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: #0a07cf;
+}
