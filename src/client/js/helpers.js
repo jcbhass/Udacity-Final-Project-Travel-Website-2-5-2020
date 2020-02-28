@@ -10,7 +10,7 @@ const getDate =  () => {
 
 // Gets Skycons info from DarkSky API
 const getIcons = (icon, iconID) => {
-    const skycons = new Skycons({ color: 'black'})
+    const skycons = new Skycons({ color: 'white'})
     const currentIcon = icon.replace(/-/g, '_').toUpperCase();
     skycons.play();
 

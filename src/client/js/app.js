@@ -7,7 +7,7 @@ const apiKey = process.env.GEONAMES_KEY;
 
 const serverUrl = 'http://localhost:5000';
 
-// Takes information from user
+// Takes user input
 function performAction(event){
   // Gets city and dates from user input
   const cityName =  document.getElementById('city').value;
