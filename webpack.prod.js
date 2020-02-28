@@ -40,8 +40,8 @@ module.exports = {
         new WorkboxPlugin.GenerateSW(),
         new CopyPlugin([
             {
-                from: 'src/client/js/skycons.js', // from the project folder
-                to: 'src/client/js' // to the dist folder
+                from: 'src/client/js/skycons.js',
+                to: 'src/client/js' 
             }
         ])
     ]    

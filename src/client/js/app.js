@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getDate, getIcons, createImage, getCityInfo, postData } from './helpers';
 
+// Geonames base api url 
 const baseURL = process.env.GEONAMES_API;
 const apiKey = process.env.GEONAMES_KEY;
 

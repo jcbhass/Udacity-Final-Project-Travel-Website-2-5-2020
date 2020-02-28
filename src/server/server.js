@@ -22,9 +22,8 @@ app.use(cors());
 app.use(express.static('dist'));
 
 
-// POST route
+// Sets-up information in projectData object 
 app.post('/information', function (req, res) {
-   
     projectData = {
         date: req.body.date,
         geoname: {
@@ -51,12 +50,15 @@ app.post('/information', function (req, res) {
 app.get('/all', async function (req, res) {
     console.log('DATA=====', projectData)
     try {
+        // Gets information from DarkSky Api using the latitude and longitude retrieved from Geonames API
         const response = await axios.get(`${darkApiURL}/${darkApiKey}/${projectData.geoname.lat},${projectData.geoname.long},${projectData.unixDate}?exclude=minutely,hourly,daily,alerts,flag`);
         projectData.forecast = response.data;
         
+        // Gets information from PixaBay Api using the city name from Geonames API 
         const picResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.geoname.city}&image_type=photo`);
         projectData.pictures = picResponse.data;
 
+        // Gets picture of American flag if no hits from PixaBay API 
         if(picResponse.data.hits.length === 0) {
             console.log('Alternate pics used!!!')
             const alternatePicResponse = await axios.get(`${pixaBayApiURL}${pixaBayApiKey}&q=${projectData.geoname.country}&image_type=photo`);

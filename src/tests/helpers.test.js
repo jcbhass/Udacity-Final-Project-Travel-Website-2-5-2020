@@ -1,4 +1,4 @@
-import { getDate, setIcons, createImage, getCityInfo, postData } from '../client/js/helpers';
+import { getDate, getIcons, createImage, getCityInfo, postData } from '../client/js/helpers';
 
 describe('Helper functions test', () => {
     describe('getDate', () => {
@@ -12,11 +12,11 @@ describe('Helper functions test', () => {
     }),
     describe('setIcons', () => {
         it('It should be true if setIcons is defined', () => {
-            expect(setIcons).toBeDefined();
+            expect(getIcons).toBeDefined();
         });
     
         it('It should be true if setIcons is a function', () => {
-            expect(typeof setIcons).toBe('function');
+            expect(typeof getIcons).toBe('function');
         });
     }),  
     describe('createImage', () => {
