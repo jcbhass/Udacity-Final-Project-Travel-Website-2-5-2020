@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { getDate, setIcons, createImage, getCityInfo, postData } from './helpers';
+import { getDate, getIcons, createImage, getCityInfo, postData } from './helpers';
 
 const baseURL = process.env.GEONAMES_API;
 const apiKey = process.env.GEONAMES_KEY;
 
 const serverUrl = 'http://localhost:5000';
 
+// Takes information from user
 function performAction(event){
   // Gets city and dates from user input
   const cityName =  document.getElementById('city').value;
@@ -39,7 +40,7 @@ function performAction(event){
     getCityInfo(baseURL, cityName, apiKey) 
       .then(function(data){
         console.log('HEY===',data);
-        // Add data to POST request
+        // Adds data to POST request
     
         data.date = getDate();
         data.start = startDate;
@@ -57,6 +58,7 @@ function performAction(event){
       .then(updateUI);
 }
 
+// Shows data onto browser
 const updateUI = async () => {
   try{
     // Gets data from the server
@@ -66,7 +68,7 @@ const updateUI = async () => {
 
       console.log('===Project Data ===', projectData);
 
-      // Displays image
+      // Displays city image
       const img = createImage(projectData.pictures.hits[0].webformatURL);
       document.getElementById("city_picture").appendChild(img);
 
@@ -74,9 +76,9 @@ const updateUI = async () => {
       // Displays city and trip information
       document.getElementById('trip_info').innerHTML = `Your trip to ${projectData.geoname.city}, ${projectData.geoname.state} is ${projectData.daysTill} day(s) away and will last ${projectData.durationOfTrip} days.`;
      
-      //Displays Skycon animation
+      // Displays Skycon animation
       const icon = projectData.forecast.currently.icon
-      setIcons(icon, document.getElementById('icon1'));
+      getIcons(icon, document.getElementById('icon1'));
 
       // Displays weather information
       document.getElementById('current_forecast').innerHTML = `The weather forecast for ${projectData.startTrip} is ${(projectData.forecast.currently.summary).toLowerCase()} with a temperature of ${projectData.forecast.currently.temperature}&deg.`;
@@ -91,10 +93,9 @@ const updateUI = async () => {
 }
 
 document.getElementById('generate').addEventListener('click', performAction);
-// onclick="setTimeout(function () { window.location.reload(); }, 10)"
-console.log('HEY======XXX=')
 
 
 
 
 
+  

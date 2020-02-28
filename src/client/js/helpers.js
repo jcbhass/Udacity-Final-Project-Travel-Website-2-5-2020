@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Create a new date instance dynamically with JS
+// Creates a new date instance dynamically with JS
 const getDate =  () => {
     const d = new Date();
     const today = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`;
@@ -8,8 +8,8 @@ const getDate =  () => {
     return today;
 }
 
-//Skycon
-const setIcons = (icon, iconID) => {
+// Gets Skycons info from DarkSky API
+const getIcons = (icon, iconID) => {
     const skycons = new Skycons({ color: 'black'})
     const currentIcon = icon.replace(/-/g, '_').toUpperCase();
     skycons.play();
@@ -26,6 +26,7 @@ const createImage = (imageSrc) => {
     return img;
 }
 
+// Takes user input to retrieve information on city
 const getCityInfo = async (baseURL, cityName, apiKey)=> {
     try {
         const res = await axios.get(`${baseURL}?q=${cityName}&country=us&maxRows=3&${apiKey}`)
@@ -36,7 +37,7 @@ const getCityInfo = async (baseURL, cityName, apiKey)=> {
     }
 }
 
-// Async POST
+// Posts data to server
 const postData = async (url, data)=>{
     try{
       const response = await axios.post(url, data);
@@ -47,4 +48,4 @@ const postData = async (url, data)=>{
     } 
   }
   
-  export { getDate, setIcons, createImage, getCityInfo, postData }
+  export { getDate, getIcons, createImage, getCityInfo, postData }
