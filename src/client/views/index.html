@@ -8,7 +8,8 @@
 <body>
   <main class="container">
     <h1 class="holder_headline">Travel Planner</h1>
-    <h2 class="explanation">Help decide your travel needs. Check the weather during your trip.</h2> 
+    <h2 class="explanation">Help decide your travel needs. Check the weather forecast for your trip.</h2> 
+    <!----------------USER INFORMATION SECTION---------------------->
     <label for="city">Enter city and state you are traveling to: </label>      
     <input class="myInput" type="text" id="city" placeholder="city, state">
     </br>
@@ -19,8 +20,9 @@
     <textarea class= "myInput" id="trip-end" placeholder="mm/dd/yyyy" rows="1" cols="30"></textarea>
     </br>
     </br>
-    <input id="generate" type="submit" ></input>
+    <input id="generate" type="submit"></input>
     </br>
+    <!----------------RESULTS SECTION---------------------->
     <div id="city_picture"></div>
     <div class="results" id="trip_info"></div>
     <canvas id="icon1" width="200" height="200"></canvas>

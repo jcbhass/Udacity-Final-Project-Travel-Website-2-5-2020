@@ -10,3 +10,23 @@ label {
 .myInput {
     text-align: center;
 }
+
+input[type=submit],
+input[type=reset] {
+    display: inline-block;
+    padding: 10px 30px; 
+    font-weight: 700;
+    text-decoration: none; 
+    border-radius: 200px;
+    background-color:#0a07cf;
+    border: 1px solid #0a07cf;
+    color: #fff;
+}
+
+input[type=submit]:hover, input[type=reset]:hover,
+input[type=submit]:active, input[type=reset]:active  {
+    background-color: #fff;
+    border: 1px solid #fff;
+    color: #0a07cf;
+}
+
