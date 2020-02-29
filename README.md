@@ -6,6 +6,7 @@ This project required an asynchronous web app that uses Web API and user data to
 -  the trip length 
 -  the local weather at the start of the trip
 -  an animated Skycon of the weather 
+It used APIs, Webpack, Sass styles, Service Workers, and Jest Tests.
 
 ## Instructions
 Please use "npm run start-prod" to start the application. The localhost is 5000.
